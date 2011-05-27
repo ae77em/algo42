@@ -1,6 +1,6 @@
 package algo42.modelo;
 
-public class Nave implements ElementoPosicionableOcupador {
+public class Nave implements Movible {
 
 	public void activar(Mision mision) {
 		// TODO Auto-generated method stub

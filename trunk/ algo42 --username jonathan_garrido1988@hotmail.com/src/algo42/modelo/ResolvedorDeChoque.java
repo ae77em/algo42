@@ -2,9 +2,10 @@ package algo42.modelo;
 
 public class ResolvedorDeChoque {
 
-	public TipoDeChoque resolver(Bala bala, ElementoPosicionableOcupador objeto) {
+	public TipoDeChoque resolver(Movible autor, Movible victima) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
