@@ -30,4 +30,20 @@ public class Algo42 implements Movible {
 		return 0;
 	}
 
+	@Override
+	public void mover() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void cargar(Arma remove) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void aumentarEnergia(int cantidad) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

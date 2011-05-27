@@ -6,4 +6,5 @@ public interface Movible {
 	public abstract void setPosicion(Punto posicion);
 	public abstract void activarMisionEnPosicion(Mision mision, Punto posicion);
 	public abstract int getRadio();
+	public abstract void mover();
 }

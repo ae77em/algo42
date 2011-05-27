@@ -42,4 +42,10 @@ public class Nave implements Movible {
 		return 0;
 	}
 
+	@Override
+	public void mover() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

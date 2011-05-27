@@ -137,7 +137,6 @@ public class Mision {
 		Movible objeto = this.hayAlguien(posicion);
 		
 		if (objeto == null){
-			bala.setPosicion(posicion);
 			this.espacioAereo.add(0, bala);
 		}
 		else{
