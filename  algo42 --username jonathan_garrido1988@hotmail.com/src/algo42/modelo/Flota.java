@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Flota {
 	
-	private ArrayList<ElementoPosicionableOcupador> avionetas, cazas, bombarderos, exploradores, naveMadre;
+	private ArrayList<Movible> avionetas, cazas, bombarderos, exploradores, naveMadre;
 	private int topeAvioneta, topeCaza, topeBombardero, topeExplorador;
 
 	
 	public void inicializarFlota(int numeroDeMision) {
-		this.avionetas = new ArrayList<ElementoPosicionableOcupador>();
-		this.cazas = new ArrayList<ElementoPosicionableOcupador>();
-		this.bombarderos = new ArrayList<ElementoPosicionableOcupador>();
-		this.exploradores = new ArrayList<ElementoPosicionableOcupador>();
-		this.naveMadre = new ArrayList<ElementoPosicionableOcupador>();
+		this.avionetas = new ArrayList<Movible>();
+		this.cazas = new ArrayList<Movible>();
+		this.bombarderos = new ArrayList<Movible>();
+		this.exploradores = new ArrayList<Movible>();
+		this.naveMadre = new ArrayList<Movible>();
 		
 		this.naveMadre.add(0, new Guia());
 		
@@ -36,8 +36,8 @@ public class Flota {
 		while(i <= this.topeExplorador){this.exploradores.add(0, new Explorador());}	
 	}
 	
-	public ArrayList<ElementoPosicionableOcupador> getNaves(){
-		ArrayList<ElementoPosicionableOcupador> naves = new ArrayList<ElementoPosicionableOcupador>();
+	public ArrayList<Movible> getNaves(){
+		ArrayList<Movible> naves = new ArrayList<Movible>();
 		
 		int numeroAlAzar = 0;
 		//Elijo un numero al azar para ver que naves vienen

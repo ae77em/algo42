@@ -7,11 +7,11 @@ import algo42.modelo.excepciones.CoordenadaFueraDeRangoError;
 public class Mision {
 	
 	private boolean activa;
-	private ArrayList<ElementoPosicionableOcupador> espacioAereo;
+	private ArrayList<Movible> espacioAereo;
 	private Flota flota;
 	private Juego juego;
 	private Algo42 jugador;
-	private ArrayList<ElementoPosicionableOcupador> navesNoEnemigas;
+	private ArrayList<Movible> navesNoEnemigas;
 	private int numeroDeMision;
 	private int puntajeJugador;
 	private Punto puntoInicialJugador;
@@ -32,7 +32,7 @@ public class Mision {
 		return this.jugador.getPosicion();
 	}
 	
-	public ElementoPosicionableOcupador getObjetoEnPosicion(Punto posicion){
+	public Movible getObjetoEnPosicion(Punto posicion){
 		for (int i = 0; i < (this.espacioAereo.size()); i ++){
 			if (this.espacioAereo.get(i).getPosicion().equals(posicion)){
 				return this.espacioAereo.get(i);
@@ -55,7 +55,7 @@ public class Mision {
 	
 	public void comenzar() {
 		
-		ArrayList<ElementoPosicionableOcupador> navesEnemigas, navesCiviles;
+		ArrayList<Movible> navesEnemigas, navesCiviles;
 		Nave naveActual;
 		
 		this.activa = true;
@@ -82,8 +82,8 @@ public class Mision {
 		this.misionCompletada();
 	}
 
-	public ElementoPosicionableOcupador hayAlguien(Punto posicion) throws CoordenadaFueraDeRangoError{
-		ElementoPosicionableOcupador casillero = null;
+	public Movible hayAlguien(Punto posicion) throws CoordenadaFueraDeRangoError{
+		Movible casillero = null;
 		
 		if((posicion.getX() <= 1) || (posicion.getX() >= 100)){
 			throw new CoordenadaFueraDeRangoError();
@@ -112,7 +112,7 @@ public class Mision {
 		this.numeroDeMision = contadorDeMision;
 		this.puntoInicialJugador = new Punto(51,99);
 		this.puntajeJugador = 0;
-		this.espacioAereo = new ArrayList<ElementoPosicionableOcupador>();
+		this.espacioAereo = new ArrayList<Movible>();
 		this.jugador = new Algo42();
 		this.flota = new Flota();
 		this.flota.inicializarFlota(this.numeroDeMision);
@@ -134,7 +134,7 @@ public class Mision {
 		
 		ResolvedorDeChoque resolvedorDeChoque;
 		TipoDeChoque tipoDeChoque;
-		ElementoPosicionableOcupador objeto = this.hayAlguien(posicion);
+		Movible objeto = this.hayAlguien(posicion);
 		
 		if (objeto == null){
 			bala.setPosicion(posicion);
@@ -148,7 +148,7 @@ public class Mision {
 	}
 	
 	private void crearNavesNoEnemigas() {
-		this.navesNoEnemigas = new ArrayList<ElementoPosicionableOcupador>();
+		this.navesNoEnemigas = new ArrayList<Movible>();
 		int i = 0;
 		while (i <= this.numeroDeMision){
 			this.navesNoEnemigas.add(0, new Civil());
@@ -168,7 +168,7 @@ public class Mision {
 		this.jugador.activarMisionEnPosicion(this, this.puntoInicialJugador);
 	}
 	
-	public void ubicarObjetoEnPosicion(ElementoPosicionableOcupador objeto, Punto posicion){
+	public void ubicarObjetoEnPosicion(Movible objeto, Punto posicion){
 		objeto.setPosicion(posicion);
 		this.espacioAereo.add(0, objeto);
 		objeto.activarMisionEnPosicion(this, posicion);

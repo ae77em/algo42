@@ -1,8 +1,8 @@
 package algo42.modelo;
 
-public class TipoDeChoque {
+public abstract class TipoDeChoque {
 
-	public void chocarEntre(Bala bala, ElementoPosicionableOcupador objeto) {
+	public void chocarEntre(Movible autor, Movible victima) {
 		// TODO Auto-generated method stub
 		
 	}
