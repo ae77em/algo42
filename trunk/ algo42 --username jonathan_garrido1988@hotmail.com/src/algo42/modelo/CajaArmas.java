@@ -12,15 +12,14 @@ public class CajaArmas extends Objeto {
 		super();
 		Cohete cohete = null;
 		TorpedoRastreador torpedoRastreador = null;
-		
 		try {
 			cohete = new Cohete(30, 2);
-			torpedoRastreador = new TorpedoRastreador(20, 2);		
+			torpedoRastreador = new TorpedoRastreador(20, 2);
+			this.armas.add(cohete);
+			this.armas.add(torpedoRastreador);
 		} catch (CantidadDeBalasIncorrecta e) {
 			e.printStackTrace();
 		}
-		this.armas.add(cohete);
-		this.armas.add(torpedoRastreador);
 	}
 	
 	@Override

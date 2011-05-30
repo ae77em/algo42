@@ -1,5 +1,7 @@
 package algo42.modelo;
 
+import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
+
 public class CajaEnergia extends Objeto {
 
 	private int cantidad;
@@ -9,10 +11,13 @@ public class CajaEnergia extends Objeto {
 		this.cantidad = 50;
 	}
 	
-	@Override
+	
 	public void consumirPor(Algo42 algo42) {
 		if (this.activo == true) {
-			algo42.aumentarEnergia(this.cantidad);
+			try {
+				algo42.aumentarEnergia(this.cantidad);
+			} catch (CantidadDeEnergiaIncorrecta e) {
+			}
 			this.destruir();
 		}
 	}
