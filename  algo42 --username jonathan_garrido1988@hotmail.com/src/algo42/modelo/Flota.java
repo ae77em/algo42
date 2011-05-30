@@ -83,4 +83,9 @@ public class Flota {
 		naves.add(this.naveMadre.remove(0));
 		return naves;
 	}
+
+	public Punto getPosicionNave(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
