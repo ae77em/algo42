@@ -68,7 +68,7 @@ public class Mision {
 			if (i < navesCiviles.size()){
 				naveActual = (Nave) navesCiviles.remove(0);
 			}
-			naveActual.activar(this);
+			naveActual.activar(this, this.flota.getPosicionNave(i + 1));/*Le pedis la posicion de la nave a la flota*/
 			naveActual.actuar();
 			i ++;
 		}
@@ -93,17 +93,12 @@ public class Mision {
 		}
 		else {			
 			for (int i = 0; i < (this.espacioAereo.size()); i ++){
-				if (this.espacioAereo.get(i).getPosicion().distancia(posicion) <= (this.espacioAereo.get(i).getRadio() + this.getObjetoEnPosicion(posicion).getRadio())){
+				if (this.espacioAereo.get(i).getPosicion().distancia(posicion) <= (this.espacioAereo.get(i).getTamanio() + this.getObjetoEnPosicion(posicion).getTamanio())){
 					casillero = this.espacioAereo.get(i);
 				}
 			}
-			if (casillero.getOcupado() == false){
-				return null;
-			}
-			else {
-				return casillero;
-			}
 		}
+		return casillero;
 	}
 
 	public void inicializarMisionEnJuego(Integer contadorDeMision, Juego unJuego) {
@@ -130,12 +125,18 @@ public class Mision {
 		this.activa = valor;
 	}
 	
-	public void ubicarBalaEnPosicion(Bala bala, Punto posicion) throws CoordenadaFueraDeRangoError{
+	public void ubicarBalaEnPosicion(Bala bala, Punto posicion) {
 		
 		ResolvedorDeChoque resolvedorDeChoque;
 		TipoDeChoque tipoDeChoque;
-		Movible objeto = this.hayAlguien(posicion);
+		Movible objeto = null;
+		try {
+			objeto = this.hayAlguien(posicion);
+		} catch (CoordenadaFueraDeRangoError e) {
+			e.printStackTrace();
+		}
 		
+		bala.activar(this, posicion);
 		if (objeto == null){
 			this.espacioAereo.add(0, bala);
 		}
@@ -161,15 +162,15 @@ public class Mision {
 		this.juego.comenzar();
 	}
 	
-	private void ubicarNaveDelJugador(){
+	public void ubicarNaveDelJugador(){
 		this.jugador.setPosicion(this.puntoInicialJugador);
 		this.espacioAereo.add(0, this.jugador);
-		this.jugador.activarMisionEnPosicion(this, this.puntoInicialJugador);
+		this.jugador.activar(this, this.puntoInicialJugador);
 	}
 	
 	public void ubicarObjetoEnPosicion(Movible objeto, Punto posicion){
 		objeto.setPosicion(posicion);
 		this.espacioAereo.add(0, objeto);
-		objeto.activarMisionEnPosicion(this, posicion);
+		objeto.activar(this, posicion);
 	}
 }

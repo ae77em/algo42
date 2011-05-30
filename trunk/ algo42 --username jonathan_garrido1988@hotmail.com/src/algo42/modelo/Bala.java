@@ -13,15 +13,17 @@ public abstract class Bala implements Movible {
 	protected int equipo;
 	protected int energia;
 	protected int tamanio;
+	private boolean expansible;
 	
 	public Bala () {
 		this.energia = 1;
 		this.tamanio = 0;
 		this.activo = false;
+		this.expansible = false;
 		this.posicion = new Punto(0,0);
 	}
 	
-	public void aumentarEnergia (int cantidad) throws CantidadDeEnergiaIncorrecta {
+	public void aumentarEnergia(int cantidad) throws CantidadDeEnergiaIncorrecta {
 		if (cantidad <= 0) {
 			throw new CantidadDeEnergiaIncorrecta();
 		} else {
@@ -56,40 +58,55 @@ public abstract class Bala implements Movible {
 		}
 	}
 	
-	public void activar (Punto posicionBala, Mision tablero) {
+	@Override
+	public void activar(Mision tablero, Punto posicion) {
 		this.tablero = tablero;
-		this.posicion = posicionBala;
+		this.posicion = posicion;
 		this.activo = true;
-	}
-	
-	
-	@Override
-	public Punto getPosicion() {
-		return null;
-	}
-
-	@Override
-	public boolean getOcupado() {
-		return false;
-	}
-	
-	@Override
-	public void setPosicion(Punto posicion) {
-	
-	}
-
-	@Override
-	public void activarMisionEnPosicion(Mision mision, Punto posicion) {
-		
-	}
-
-	@Override
-	public int getRadio() {
-		return 0;
 	}
 
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
+	}
+	
+	@Override
+	public boolean getActivo() {
+		return this.activo;
+	}
+
+	@Override
+	public Punto getPosicion() {
+		return this.posicion;
+	}
+
+	@Override
+	public void setPosicion(Punto posicion) {
+		this.posicion = posicion;
+	}
+
+	@Override
+	public int getTamanio() {
+		return this.tamanio;
+	}
+
+	@Override
+	public int getVelocidad() {
+		return this.velocidad;
+	}
+
+	@Override
+	public int getEquipo() {
+		return this.equipo;
+	}
+
+	@Override
+	public boolean getExpansible() {
+		return this.expansible;
+	}
+
+	@Override
+	public int getDanio() {
+		return this.danio;
 	}
 
 }
