@@ -2,6 +2,7 @@ package algo42.modelo;
 
 import java.util.*;
 
+import algo42.modelo.excepciones.CantidadDeBalasIncorrecta;
 import algo42.modelo.excepciones.CoordenadaFueraDeRangoError;
 
 public class Mision {
@@ -53,35 +54,34 @@ public class Mision {
 		}
 	}
 	
-	public void comenzar() {
+	public void comenzar() throws CantidadDeBalasIncorrecta {
 		
 		ArrayList<Movible> navesEnemigas, navesCiviles;
 		Nave naveActual;
 		
-		this.activa = true;
-		navesEnemigas = this.flota.getNaves();
-		navesCiviles = this.navesNoEnemigas;
-		
-		int i = 0;
-		while (i < navesEnemigas.size()){
-			naveActual = (Nave) navesEnemigas.remove(0);
-			if (i < navesCiviles.size()){
-				naveActual = (Nave) navesCiviles.remove(0);
+		this.activa = true;		
+		while (this.puntajeJugador < 1000){
+			navesEnemigas = this.flota.getNaves();
+			navesCiviles = this.crearNavesNoEnemigas();
+			int i = 0;
+			while (i < navesEnemigas.size()){
+				naveActual = (Nave) navesEnemigas.remove(0);
+				if (i < navesCiviles.size()){
+					naveActual = (Nave) navesCiviles.remove(0);
+				}
+				naveActual.activar(this, this.flota.getPosicionNave(i + 1));/*Le pedis la posicion de la nave a la flota*/
+				naveActual.actuar();
+				i ++;
 			}
-			naveActual.activar(this, this.flota.getPosicionNave(i + 1));/*Le pedis la posicion de la nave a la flota*/
-			naveActual.actuar();
-			i ++;
-		}
-		if(this.puntajeJugador >= 1000){
 			this.activa = false;
 			this.misionCompletada();
 		}
 	}
 	
-	public void guiaDestruida(){
+	public void guiaDestruida() throws CantidadDeBalasIncorrecta{
 		this.misionCompletada();
 	}
-
+	
 	public Movible hayAlguien(Punto posicion) throws CoordenadaFueraDeRangoError{
 		Movible casillero = null;
 		
@@ -101,7 +101,7 @@ public class Mision {
 		return casillero;
 	}
 
-	public void inicializarMisionEnJuego(Integer contadorDeMision, Juego unJuego) {
+	public void inicializarMisionEnJuego(Integer contadorDeMision, Juego unJuego){
 		
 		this.juego = unJuego;
 		this.numeroDeMision = contadorDeMision;
@@ -110,9 +110,7 @@ public class Mision {
 		this.espacioAereo = new ArrayList<Movible>();
 		this.jugador = new Algo42();
 		this.flota = new Flota();
-		this.flota.inicializarFlota(this.numeroDeMision);
 		
-		this.crearNavesNoEnemigas();
 		this.ubicarNaveDelJugador();
 	}
 	
@@ -147,16 +145,17 @@ public class Mision {
 		}
 	}
 	
-	private void crearNavesNoEnemigas() {
+	private ArrayList<Movible> crearNavesNoEnemigas() {
 		this.navesNoEnemigas = new ArrayList<Movible>();
 		int i = 0;
 		while (i <= this.numeroDeMision){
 			this.navesNoEnemigas.add(0, new Civil());
 			this.navesNoEnemigas.add(0, new Helicoptero());
 		}
+		return this.navesNoEnemigas;
 	}
 	
-	private void misionCompletada() {
+	private void misionCompletada() throws CantidadDeBalasIncorrecta {
 		this.activa = false;
 		this.juego.aumentarContadorDeMision();
 		this.juego.comenzar();

@@ -1,9 +1,9 @@
 package algo42.test;
 
 import java.util.ArrayList;
-
 import junit.framework.TestCase;
 import algo42.modelo.*;
+
 
 public class Algo42Test extends TestCase {
 
@@ -20,6 +20,7 @@ public class Algo42Test extends TestCase {
 		CajaArmas caja = new CajaArmas();
 		int tiempo = 1;
 		ArrayList<Arma> armas;
+		
 		this.tablero.ubicarObjetoEnPosicion(caja, new Punto(51, 95));
 		this.tablero.ubicarNaveDelJugador();
 		for (int i = 1; i <= tiempo; i++) {
@@ -41,7 +42,7 @@ public class Algo42Test extends TestCase {
 		assertTrue(energia == 1000 - 150);
 	}
 	
-	public void testDestruirPierdo () {
+	public void testDestruirPierdo (){
 		this.jugador.destruir();
 		assertTrue(this.juego.getGanaste() == -1);
 	}

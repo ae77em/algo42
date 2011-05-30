@@ -1,5 +1,7 @@
 package algo42.modelo;
 
+import algo42.modelo.excepciones.CantidadDeBalasIncorrecta;
+
 public class Juego {
 	
 	private Mision mision;
@@ -20,7 +22,7 @@ public class Juego {
 		return this.ganaste;
 	}
 	
-	public void comenzar (){
+	public void comenzar () throws CantidadDeBalasIncorrecta{
 		while (this.mision.getActivo() == false){
 			if (this.contadorDeMision > 10){
 				this.ganaste();
