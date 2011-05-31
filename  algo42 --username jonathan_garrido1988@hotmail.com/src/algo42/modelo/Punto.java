@@ -34,6 +34,14 @@ public class Punto {
 	public int getY(){
 		return this.y;
 	}
+	
+	public void setX(int unPuntoX){
+		x = unPuntoX;
+	}
+	
+	public void setY(int unPuntoY){
+		y = unPuntoY;
+	}
 		
 	public boolean equals(Punto coordenada){
 		if ((coordenada.getX() == this.x) && (coordenada.getY() == this.y))
