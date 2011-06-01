@@ -4,13 +4,13 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
 public class Nave implements Movible {
 	
-	private Estrategia estrategia;
-	private Punto posicion;
-	private float tamanio;
-	private float energia;
-	private float energiaInicial;
-	private float velocidad;
-	private boolean activo;
+	protected Estrategia estrategia;
+	protected Punto posicion;
+	protected float tamanio;
+	protected float energia;
+	protected float energiaInicial;
+	protected float velocidad;
+	protected boolean activo;
 	
 	
 	Nave(){
@@ -62,7 +62,7 @@ public class Nave implements Movible {
 
 	public void disminuirEnergia(float cantidad) {
 		try { verificarCantidadDeEnergia(cantidad);
-		energia = energia - cantidad;
+				energia = energia - cantidad;
 		} catch (CantidadDeEnergiaIncorrecta e) {
 			System.err.println("Error " + e);
 		}
