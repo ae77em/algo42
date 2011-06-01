@@ -2,38 +2,30 @@ package algo42.modelo;
 
 public class Helicoptero extends Nave {
 	
-	private int radioDeVuelo;
-	private int velocidad;
-	
-	
 	public Helicoptero() {
-		radioDeVuelo = 1;
-		velocidad = 1;		
+		posicion = new Punto(0,0);
+		tamanio = 0.5; //este valor es arbitrario
+		velocidad = 0.5; //este valor es arbitrario
+		energia = 100; //este valor es arbitrario
+		energiaInicial = energia;
+		activo = false;
 	}
 		
-	Helicoptero(int radioDeVuelo,int velocidad){
-		this.radioDeVuelo = radioDeVuelo;
-		this.velocidad = velocidad;
-	}
-	
-	activar(){
-		// no se que iria aca
-	}
-	
-	getRadioDeVuelo(){
-		return radioDeVuelo
+		
+/*	getRadioDeVuelo(){
+		return radioDeVuelo;
 	}
 	
 	setRadioDeVuelo(int otroRadio){
-		radioDeVuelo = otroRadio
+		radioDeVuelo = otroRadio;
 	}
 	
 	setVelocidad(int otraVel){
-		velocidad = otraVel
+		velocidad = otraVel;
 	}
 	
 	getVelocidad(){
-		return velocidad
-	}
+		return velocidad;
+	}*/
 	
 }
