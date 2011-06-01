@@ -111,7 +111,7 @@ public class Algo42 implements Movible {
 		else if (unaDireccion == 3){
 			this.direccion = new Abajo();
 		}
-		else{
+		else if (unaDireccion == 4){
 			this.direccion = new Derecha();
 		}
 		this.direccion.trasladar(this, this.tablero);
@@ -124,7 +124,7 @@ public class Algo42 implements Movible {
 	public void destruir(){
 		this.energia = 0;
 		try {
-			this.tablero.hayAlguien(this.posicion);
+			this.tablero.hayAlguien(this, this.posicion);
 		} catch (CoordenadaFueraDeRangoError e) {
 			e.printStackTrace();
 		}

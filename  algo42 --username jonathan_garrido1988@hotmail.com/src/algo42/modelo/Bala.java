@@ -2,7 +2,7 @@ package algo42.modelo;
 
 import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
-public abstract class Bala implements Movible {
+public abstract class Bala extends Objeto {
 
 	protected Mision tablero;
 	protected int velocidad;
@@ -108,5 +108,11 @@ public abstract class Bala implements Movible {
 	public int getDanio() {
 		return this.danio;
 	}
+	
 
+	@Override
+	public void consumirPor(Algo42 algo42) {
+		algo42.disminuirEnergia(this.danio);
+		this.destruir();
+	}
 }

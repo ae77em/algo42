@@ -82,7 +82,7 @@ public class Mision {
 		this.misionCompletada();
 	}
 	
-	public Movible hayAlguien(Punto posicion) throws CoordenadaFueraDeRangoError{
+	public Movible hayAlguien(Movible objetoAMover, Punto posicion) throws CoordenadaFueraDeRangoError{
 		Movible casillero = null;
 		
 		if((posicion.getX() <= 1) || (posicion.getX() >= 100)){
@@ -93,7 +93,7 @@ public class Mision {
 		}
 		else {			
 			for (int i = 0; i < (this.espacioAereo.size()); i ++){
-				if (this.espacioAereo.get(i).getPosicion().distancia(posicion) <= (this.espacioAereo.get(i).getTamanio() + this.getObjetoEnPosicion(posicion).getTamanio())){
+				if (this.espacioAereo.get(i).getPosicion().distancia(posicion) <= (this.espacioAereo.get(i).getTamanio() + objetoAMover.getTamanio())){
 					casillero = this.espacioAereo.get(i);
 				}
 			}
@@ -129,7 +129,7 @@ public class Mision {
 		TipoDeChoque tipoDeChoque;
 		Movible objeto = null;
 		try {
-			objeto = this.hayAlguien(posicion);
+			objeto = this.hayAlguien(bala, posicion);
 		} catch (CoordenadaFueraDeRangoError e) {
 			e.printStackTrace();
 		}

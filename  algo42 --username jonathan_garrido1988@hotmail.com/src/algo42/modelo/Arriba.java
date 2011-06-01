@@ -27,7 +27,7 @@ public class Arriba extends Direccion {
 		for (int i = posicion.getX() - tamanio; i <= posicion.getX() + tamanio; i++) {
 			for (int j = posicion.getY() - tamanio - velocidad; j <= posicion.getY() - tamanio - 1; j++) {
 				try {
-					otroObjeto = tablero.hayAlguien(new Punto(i, j));
+					otroObjeto = tablero.hayAlguien(objetoMovible, new Punto(i, j));
 				} catch (CoordenadaFueraDeRangoError e) {
 					e.printStackTrace();
 				}

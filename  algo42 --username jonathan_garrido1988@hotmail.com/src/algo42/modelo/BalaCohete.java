@@ -7,5 +7,4 @@ public class BalaCohete extends Bala {
 		this.velocidad = 6;
 		this.danio = 30;
 	}
-	
 }
