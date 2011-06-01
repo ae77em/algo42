@@ -23,8 +23,6 @@ public class LineaHorizontal extends Estrategia {
 		if ( nave.getPosicion().getY() = nave.getLimitesTablero().getY() ){
 			sentido = IZQUIERDA;
 		}
-			
-		
 	}
 	
 
