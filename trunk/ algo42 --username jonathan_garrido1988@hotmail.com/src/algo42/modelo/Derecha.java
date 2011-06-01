@@ -27,7 +27,7 @@ public class Derecha extends Direccion {
 		for (int i = posicion.getX() + tamanio + 1; i <= posicion.getX() + tamanio + velocidad; i++) {
 			for (int j = posicion.getY() - tamanio; j <= posicion.getY() + tamanio; j++) {
 				try {
-					otroObjeto = tablero.hayAlguien(new Punto(i, j));
+					otroObjeto = tablero.hayAlguien(objetoMovible, new Punto(i, j));
 				} catch (CoordenadaFueraDeRangoError e) {
 					e.printStackTrace();
 				}

@@ -33,7 +33,6 @@ public class Algo42Test extends TestCase {
 	public void testChocarANave () {
 		Nave nave = new Avioneta();
 		this.tablero.ubicarObjetoEnPosicion(nave, new Punto(51, 2));
-		this.tablero.ubicarNaveDelJugador();
 		int tiempo = 100;
 		for (int i = 1; i <= tiempo; i++) {
 			this.jugador.volar(1);
@@ -50,7 +49,6 @@ public class Algo42Test extends TestCase {
 	public void testDispararANave () {
 		Nave nave = new Avioneta();
 		this.tablero.ubicarObjetoEnPosicion(nave, new Punto(51, 2));
-		this.tablero.ubicarNaveDelJugador();
 		this.jugador.disparar();
 		int tiempo = 15;
 		Bala bala = (Bala) tablero.getObjetoEnPosicion(new Punto(51, 97));
