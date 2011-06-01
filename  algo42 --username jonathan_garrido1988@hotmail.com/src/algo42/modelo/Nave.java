@@ -3,10 +3,32 @@ package algo42.modelo;
 import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
 public class Nave implements Movible {
+	
+	private Estrategia estrategia;
+	private Punto posicion;
+	private float tamanio;
+	private float energia;
+	private float energiaInicial;
+	private float velocidad;
+	private boolean activo;
+	
+	
+	Nave(){
+		posicion = new Punto(0,0);
+		tamanio = 1; //este valor es arbitrario
+		velocidad = 1; //este valor es arbitrario
+		energia = 50; //este valor es arbitrario
+		energiaInicial = energia;
+		activo = false;
+	}
 
 	public void activar(Mision tablero, Punto posicion) {
-		// TODO Auto-generated method stub
-		
+		activo = true;
+			
+	}
+	
+	public void establecerEstrategia(Estrategia suEstrategia){
+		estrategia = suEstrategia;
 	}
 
 	public void actuar() {
@@ -14,75 +36,62 @@ public class Nave implements Movible {
 		
 	}
 
-	@Override
 	public Punto getPosicion() {
-		// TODO Auto-generated method stub
-		return null;
+		return posicion;
 	}
 
-	@Override
-	public void setPosicion(Punto posicion) {
-		// TODO Auto-generated method stub
-		
+	public void setPosicion(Punto otraPosicion) {
+		posicion = otraPosicion;
 	}
 
-	@Override
-	public int getTamanio() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getTamanio() {
+		return tamanio;
+	}
+	
+	public void verificarCantidadDeEnergia(float cantidad) throws Exception{
+		if ( cantidad < 0) throws new CantidadDeEnergiaIncorrecta();
 	}
 
-	@Override
-	public void mover() {
-		// TODO Auto-generated method stub
-		
+	public void aumentarEnergia(float cantidad){ 
+		try { verificarCantidadDeEnergia(cantidad);
+				energia = energia + cantidad;
+		} catch (CantidadDeEnergiaIncorrecta e) {
+			System.err.println("Error " + e);
+		}			
+	}		
+
+	public void disminuirEnergia(float cantidad) {
+		try { verificarCantidadDeEnergia(cantidad);
+		energia = energia - cantidad;
+		} catch (CantidadDeEnergiaIncorrecta e) {
+			System.err.println("Error " + e);
+		}
 	}
 
-	@Override
-	public void aumentarEnergia(int cantidad) throws CantidadDeEnergiaIncorrecta {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void disminuirEnergia(int cantidad) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public int getVelocidad() {
-		// TODO Auto-generated method stub
-		return 0;
+		return velocidad;
 	}
 
-	@Override
 	public boolean getActivo() {
-		// TODO Auto-generated method stub
-		return false;
+		return activo;
 	}
 
-	@Override
 	public int getEquipo() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
 	public boolean getExpansible() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
-	public int getDanio() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getDanio() {
+		return ( energiaInicial - energia );
 	}
 
-	public int getEnergia() {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getEnergia() {
+		return energia;
 	}
 
 }
