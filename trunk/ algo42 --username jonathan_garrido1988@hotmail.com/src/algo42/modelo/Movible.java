@@ -3,7 +3,6 @@ package algo42.modelo;
 import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
 public interface Movible {
-	public abstract void mover();
 	public abstract void aumentarEnergia(int cantidad) throws CantidadDeEnergiaIncorrecta;
 	public abstract void disminuirEnergia(int cantidad);
 	public abstract Punto getPosicion();

@@ -4,7 +4,6 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
 public class ContraAliado extends TipoDeChoque {
 
-	@Override
 	public void chocarEntre(Movible autor, Movible victima) {
 		if ((autor.getActivo() == true)&&(victima.getActivo() == true)) {
 			try {
@@ -17,5 +16,4 @@ public class ContraAliado extends TipoDeChoque {
 			}
 		}
 	}
-
 }

@@ -1,37 +1,44 @@
-import java.lang.Math.*;
 package algo42.modelo;
 
+import java.util.Iterator;
+
 public class ZigZag extends EstrategiaArmados {
-	
-	private int indicadorDeSentido;
-	private int periodoDeVueloHaciaUnLado;
-	private Punto posicion;
-	private Nave nave;
-	private Mision mision;
-	
-	private void actualizarDatosDeMovimiento(){
-		//actualizo la cantidad de movimientos restantes
-		//hacia el lado que se esta moviendo
-		periodoDeVueloHaciaUnLado = periodoDeVueloHaciaUnLado - 1;
+        
+	public void usar(Nave nave, Mision tablero) {
+		this.tablero = tablero;
+		this.nave = nave;	
 		
-		//actualizo el director de dicho movimiento
-		if (periodoDeVueloHaciaUnLado = 0){
-			indicadorDeSentido = indicadorDeSentido * -1;
-			//el valor del perriodoDeVueloHaciaUnLado es arbitrario...
-			periodoDeVueloHaciaUnLado = 3;
+		this.mover();
+		this.disparar();
+	}
+
+	public void mover() {
+		Punto posicionDeNave = this.nave.getPosicion();
+		int numeroAlAzar = 0;
+		if ((posicionDeNave.getY() != 99 )&&(posicionDeNave.getY() != 2)&&(posicionDeNave.getX() != 2)&&(posicionDeNave.getX() != 99)) {
+			numeroAlAzar = (int) (Math.random()*4+1);
 		}
+		if ((posicionDeNave.getY() == 99)||(numeroAlAzar == 1)) {
+			this.nave.setDireccion(new Arriba());
+		}
+		if ((posicionDeNave.getX() == 99)||(numeroAlAzar == 2)) {
+			this.nave.setDireccion(new Izquierda());
+		}
+		if ((posicionDeNave.getY() == 2)||(numeroAlAzar == 3)) {
+			this.nave.setDireccion(new Abajo());
+		}
+		if ((posicionDeNave.getX() == 2)||(numeroAlAzar == 4)) {
+			this.nave.setDireccion(new Derecha());
+		}
+		this.direccion = this.nave.getDireccion();
+		this.direccion.trasladar(this.nave, this.tablero);
 	}
-	
-	public void mover(){
-		float longitudDeMovimiento = 1/sqrt(2);
-		
-		float movimiento_x = posicion.getX() + longitudDeMovimiento;
-		float movimiento_y = posicion.getY() + longitudDeMovimiento * indicadorDeSentido;
-		
-		posicion.setX( movimiento_x );
-		posicion.setY( movimiento_y );
-		
-		this.actualizarDatosDeMovimiento();
-	}
-		
+
+	public void disparar() {
+		Iterator<Arma> iterador = ((NaveArmada) this.nave).getArmas().iterator();
+    	
+    	while (iterador.hasNext()) {
+    		iterador.next().disparar(this.nave.getPosicion(), this.tablero, this.direccion);
+    	} 
+	}          
 }

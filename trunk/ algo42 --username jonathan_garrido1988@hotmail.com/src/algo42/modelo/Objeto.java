@@ -31,6 +31,7 @@ public abstract class Objeto implements Movible {
 		this.activo = true;
 		this.tablero = tablero;
 		this.posicion = posicion;
+		this.tablero.ubicarObjetoEnPosicion(this, posicion);
 	}
 	
 	public void destruir() {
@@ -49,7 +50,6 @@ public abstract class Objeto implements Movible {
 	
 	public abstract void consumirPor (Algo42 algo42);
 	
-	@Override
 	public void aumentarEnergia(int cantidad) throws CantidadDeEnergiaIncorrecta {
 		if (cantidad <= 0) {
 			throw new CantidadDeEnergiaIncorrecta();
@@ -62,7 +62,6 @@ public abstract class Objeto implements Movible {
 		}
 	}
 
-	@Override
 	public void disminuirEnergia(int cantidad) {
 		if(this.energia - danio <= 0) {
 			this.destruir();
@@ -71,42 +70,34 @@ public abstract class Objeto implements Movible {
 		}
 	}
 	
-	@Override
 	public boolean getActivo() {
 		return this.activo;
 	}
 
-	@Override
 	public int getTamanio() {
 		return this.tamanio;
 	}
 
-	@Override
 	public int getVelocidad() {
 		return this.velocidad;
 	}
 
-	@Override
 	public int getEquipo() {
 		return this.equipo;
 	}
 
-	@Override
 	public boolean getExpansible() {
 		return this.expansible;
 	}
 
-	@Override
 	public int getDanio() {
 		return this.danio;
 	}
 	
-	@Override
 	public Punto getPosicion() {
 		return this.posicion;
 	}
 
-	@Override
 	public void setPosicion(Punto posicion) {
 		this.posicion = posicion;
 	}

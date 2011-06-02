@@ -1,34 +1,43 @@
 package algo42.modelo;
 
-public class IdaVuelta extends EstrategiaArmados {
-	
-	private int direccion;
-	private Punto posicion;
-	
-	IdaVuelta(){
-		direccion = 1;
-	    posicion = new Punto(0,0);
-	}
-	
-	/* ¿como hago para saber cuanto tiempo se mueve????
-	 **/
-	public void mover(){
-		if ( this.posicionFueraDelAmbito()){
-			this.cambiarDireccion() 
-			}
-		else 
-			{ posicion setY(posicion + direccion) };
-	}
-		
-	private boolean posicionFueraDelAmbito(){
-		// aca faltaria ver que no salga fuera del ambito por abajo...
-		return ( posicion.getX() + direccion = 0 );
-	}
-	
-	private void cambiarDireccion(){
-		direccion = direccion * -1;
-	}
-	
-	
+import java.util.Iterator;
 
+public class IdaVuelta extends EstrategiaArmados {
+        
+	private boolean vueltaYaHecha = false;
+	
+	public void usar(Nave nave, Mision tablero) {
+		this.tablero = tablero;
+		this.nave = nave;
+		Punto posicionDeNave = this.nave.getPosicion();
+		
+		if ((posicionDeNave.getY() == 2)&&(this.vueltaYaHecha == true)) {
+			this.nave.huir();
+		}
+		if (posicionDeNave.getY() == 99) {
+			this.girar();
+			this.mover();
+		} else {
+			this.mover();
+			this.disparar();
+		}
+	}
+
+	public void mover() {
+		this.direccion = this.nave.getDireccion();
+		this.direccion.trasladar(this.nave, this.tablero);
+	}
+
+	public void disparar() {
+		Iterator<Arma> iterador = ((NaveArmada) this.nave).getArmas().iterator();
+    	
+    	while (iterador.hasNext()) {
+    		iterador.next().disparar(this.nave.getPosicion(), this.tablero, this.direccion);
+    	} 
+	}
+	
+	public void girar() {
+		this.nave.setDireccion(new Arriba());
+		this.vueltaYaHecha = true;
+	}
 }

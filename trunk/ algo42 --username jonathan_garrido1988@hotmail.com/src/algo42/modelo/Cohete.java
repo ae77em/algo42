@@ -12,5 +12,4 @@ public class Cohete extends Arma {
 		BalaCohete balaCohete = new BalaCohete(this.equipo);
 		return balaCohete;
 	}
-	
 }

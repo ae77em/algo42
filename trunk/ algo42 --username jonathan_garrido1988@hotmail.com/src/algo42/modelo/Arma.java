@@ -24,7 +24,9 @@ public abstract class Arma {
 		if (this.cantidadDeBalas >= 1) {
 			this.cantidadDeBalas = this.cantidadDeBalas - 1;
 		}
-		direccion.disparar(posicion, tablero, this);
+		if (this.cantidadDeBalas != 0) {
+			direccion.disparar(posicion, tablero, this);
+		}
 	}
 
 	public abstract Bala getBala();

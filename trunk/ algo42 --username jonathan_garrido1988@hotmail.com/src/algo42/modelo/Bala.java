@@ -2,18 +2,15 @@ package algo42.modelo;
 
 import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
-public abstract class Bala extends Objeto {
+public abstract class Bala implements Movible {
 
+	protected int velocidad, danio;
 	protected Mision tablero;
-	protected int velocidad;
-	protected int danio;
 	protected Punto posicion;
 	protected boolean activo;
 	protected Direccion direccion;
-	protected int equipo;
-	protected int energia;
-	protected int tamanio;
 	private boolean expansible;
+	private int equipo, energia, tamanio;
 	
 	public Bala () {
 		this.energia = 1;
@@ -51,68 +48,54 @@ public abstract class Bala extends Objeto {
 	public void mover () {
 		if (this.activo = true) {
 			if ((this.posicion.getX() > 100)||(this.posicion.getX() < 1)||(this.posicion.getY() > 100)||(this.posicion.getY() < 1)) {
-				this.activo = false;
+				this.destruir();
 			} else {
 				this.direccion.trasladar(this, this.tablero);
 			}
 		}
 	}
 	
-	@Override
 	public void activar(Mision tablero, Punto posicion) {
 		this.tablero = tablero;
 		this.posicion = posicion;
 		this.activo = true;
+		this.tablero.ubicarBalaEnPosicion(this, posicion);
 	}
 
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
 	
-	@Override
+	public Punto getPosicion() {
+		return this.posicion;
+	}
+	
+	public void setPosicion(Punto posicion) {
+		this.posicion = posicion;
+	}
+	
 	public boolean getActivo() {
 		return this.activo;
 	}
 
-	@Override
-	public Punto getPosicion() {
-		return this.posicion;
-	}
-
-	@Override
-	public void setPosicion(Punto posicion) {
-		this.posicion = posicion;
-	}
-
-	@Override
 	public int getTamanio() {
 		return this.tamanio;
 	}
 
-	@Override
 	public int getVelocidad() {
 		return this.velocidad;
 	}
 
-	@Override
 	public int getEquipo() {
 		return this.equipo;
 	}
 
-	@Override
 	public boolean getExpansible() {
 		return this.expansible;
 	}
 
-	@Override
 	public int getDanio() {
 		return this.danio;
 	}
-	
-
-	@Override
-	public void consumirPor(Algo42 algo42) {
-		algo42.disminuirEnergia(this.danio);
-		this.destruir();
-	}
 }
+

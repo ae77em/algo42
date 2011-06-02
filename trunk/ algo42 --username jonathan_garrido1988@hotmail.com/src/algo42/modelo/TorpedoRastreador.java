@@ -12,5 +12,4 @@ public class TorpedoRastreador extends Arma {
 		BalaLaser balaLaser = new BalaLaser(this.equipo);
 		return balaLaser;
 	}
-	
 }

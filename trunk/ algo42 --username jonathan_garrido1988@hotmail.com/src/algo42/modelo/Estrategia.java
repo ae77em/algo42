@@ -1,19 +1,12 @@
 package algo42.modelo;
 
-public class Estrategia {
-	
-	public static final int DERECHA = 1;
-	public static final int IZQUIERDA = -1;
-	
+public abstract class Estrategia {
+        
 	protected Nave nave;
-	private Mision mision;
+	protected Mision tablero;
+	protected Direccion direccion;
 	
-	// este metodo es igual para todos...
-	public void indicarNaveYMision(Nave laNave,Mision elTablero){
-		nave = laNave;
-		mision = elTablero;
-	}
+	public abstract void usar(Nave nave, Mision tablero);
 	
-	// este metodo se define en cada estrategia en particular
-	public abstract void mover(){}
+	public abstract void mover();
 }
