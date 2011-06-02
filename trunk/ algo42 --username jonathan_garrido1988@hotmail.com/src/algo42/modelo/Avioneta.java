@@ -1,5 +1,7 @@
 package algo42.modelo;
 
+import java.util.ArrayList;
+
 import algo42.modelo.excepciones.CantidadDeBalasIncorrecta;
 import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
@@ -8,6 +10,7 @@ public class Avioneta extends NaveArmada {
 	public Avioneta() {
 		this.estrategia = new IdaVuelta();
 		Laser laser = null;
+		this.armas = new ArrayList<Arma>();
         try {
         	laser = new Laser(-1, 2);
         } catch (CantidadDeBalasIncorrecta e) {

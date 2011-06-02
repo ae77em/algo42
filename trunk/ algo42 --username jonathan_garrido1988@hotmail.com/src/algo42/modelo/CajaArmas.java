@@ -12,6 +12,7 @@ public class CajaArmas extends Objeto {
 		super();
 		Cohete cohete = null;
 		TorpedoRastreador torpedoRastreador = null;
+		this.armas = new ArrayList<Arma>();
 		
 		try {
 			cohete = new Cohete(30, 2);
