@@ -53,7 +53,7 @@ public class Algo42Test extends TestCase {
 		for (int i = 1; i <= tiempo; i++) {
 			bala.mover();
 		}
-		int energia = nave.getEnergia();
+		int energia = (int) nave.getEnergia();
 		assertTrue(energia == 140);
 	}
 	

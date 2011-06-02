@@ -1,13 +1,13 @@
 package algo42.modelo;
 
+
 public class Circulo extends Estrategia {
-        
 	
 	public void usar(Nave nave, Mision tablero) {
 		this.tablero = tablero;
 		this.nave = nave;
 		Punto posicionDeNave = this.nave.getPosicion();
-		
+        
 		if ((posicionDeNave.getX() > 21)&&(posicionDeNave.getX() <= 51)&&(posicionDeNave.getY() >= 2)&&(posicionDeNave.getY() < 17)) {
 			this.nave.setDireccion(new Izquierda());
 			this.mover();
@@ -66,7 +66,7 @@ public class Circulo extends Estrategia {
 		}
 	}
 
-	public void mover() {
+	public void mover(){
 		this.direccion = this.nave.getDireccion();
 		this.direccion.trasladar(this.nave, this.tablero);
 	}
