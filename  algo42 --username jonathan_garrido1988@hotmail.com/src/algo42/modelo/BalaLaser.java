@@ -7,5 +7,4 @@ public class BalaLaser extends Bala {
 		this.velocidad = 7;
 		this.danio = 10;
 	}
-
 }

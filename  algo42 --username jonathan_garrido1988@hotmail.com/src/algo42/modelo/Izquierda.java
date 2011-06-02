@@ -4,7 +4,6 @@ import algo42.modelo.excepciones.CoordenadaFueraDeRangoError;
 
 public class Izquierda extends Direccion {
 
-	@Override
 	public void disparar(Punto posicion, Mision tablero, Arma arma) {
 		Bala bala = arma.getBala();
 		Punto posicionBala = new Punto(posicion.getX() - 2, posicion.getY());
@@ -14,7 +13,6 @@ public class Izquierda extends Direccion {
 		
 	}
 
-	@Override
 	public void trasladar(Movible objetoMovible, Mision tablero) {
 		Punto posicion = objetoMovible.getPosicion();
 		int velocidad = objetoMovible.getVelocidad();
@@ -27,7 +25,7 @@ public class Izquierda extends Direccion {
 		for (int i = posicion.getX() - tamanio - velocidad; i <= posicion.getX() - tamanio - 1; i++) {
 			for (int j = posicion.getY() - tamanio; j <= posicion.getY() + tamanio; j++) {
 				try {
-					otroObjeto = tablero.hayAlguien(objetoMovible, new Punto(i, j));
+					otroObjeto = tablero.hayAlguien(new Punto(i, j));
 				} catch (CoordenadaFueraDeRangoError e) {
 					e.printStackTrace();
 				}
@@ -39,11 +37,11 @@ public class Izquierda extends Direccion {
 		}
 		if (objetoMovible.getActivo() == true) {
 			posicionNueva = new Punto(posicion.getX() - velocidad, posicion.getY());
-			if (posicionNueva.getX() < 1) {
-				posicionNueva = new Punto(1, posicion.getY());
+			if (posicionNueva.getX() <= 1) {
+				posicionNueva = new Punto(2, posicion.getY());
 			}
 			objetoMovible.setPosicion(posicionNueva);
 		}
 	}
-	
 }
+

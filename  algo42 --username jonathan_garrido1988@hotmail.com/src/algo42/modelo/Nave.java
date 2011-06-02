@@ -2,96 +2,100 @@ package algo42.modelo;
 
 import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
-public class Nave implements Movible {
-	
+public abstract class Nave implements Movible {
+        
+    protected Mision tablero;
 	protected Estrategia estrategia;
-	protected Punto posicion;
-	protected float tamanio;
-	protected float energia;
-	protected float energiaInicial;
-	protected float velocidad;
-	protected boolean activo;
-	
-	
-	Nave(){
-		posicion = new Punto(0,0);
-		tamanio = 1; //este valor es arbitrario
-		velocidad = 1; //este valor es arbitrario
-		energia = 50; //este valor es arbitrario
-		energiaInicial = energia;
-		activo = false;
-	}
+    protected Punto posicion;
+    protected Direccion direccion;
+    protected int tamanio;
+	protected int energia;
+	protected int puntaje;
+	protected int velocidad;
+	protected int equipo;
+	protected int danio;
+    protected boolean activo;
+	protected boolean expansible;
+    
+    public Nave() {
+    	this.activo = false;
+    	this.equipo = 2;
+    	this.expansible = false;
+    	this.tamanio = 1;
+    	this.posicion = new Punto(0, 0);
+    	this.direccion = null;
+    }
+    
+    public abstract void activar(Mision tablero, Punto posicion);
 
-	public void activar(Mision tablero, Punto posicion) {
-		activo = true;
-			
-	}
-	
-	public void establecerEstrategia(Estrategia suEstrategia){
-		estrategia = suEstrategia;
-	}
+    public void actuar() {
+    	if (this.activo == true) {
+    		this.estrategia.usar(this, this.tablero);
+    	}
+    }
+    
+	public abstract void aumentarEnergia(int cantidad) throws CantidadDeEnergiaIncorrecta;
+    
+    public void disminuirEnergia(int danio) {
+    	if ((this.energia - danio) <= 0){
+    		this.destruir();
+        } else {
+        	this.energia = this.energia - danio;
+        }
+    }
 
-	public void actuar() {
-		// TODO Auto-generated method stub
-		
+    public void destruir() {
+		this.energia = 0;
+		this.activo = false;
+		this.tablero.aumentarPuntaje(this.puntaje);
+	}
+    
+    public void huir() {
+		this.activo = false;
 	}
 
 	public Punto getPosicion() {
-		return posicion;
+    	return this.posicion;
+    }
+
+    public void setPosicion(Punto posicion) {
+    	this.posicion = posicion;
+    }
+    
+    public boolean getActivo() {
+    	return this.activo;
+    }
+    
+    public int getDanio() {
+    	return this.danio;
+    }
+    
+    public int getEnergia() {
+    	return this.energia;
+    }
+    
+    public int getEquipo() {
+    	return this.equipo;
+    }
+
+    public boolean getExpansible() {
+    	return this.expansible;
+    }
+        
+    public int getVelocidad() {
+    	return this.velocidad;
+    }
+        
+    public int getTamanio() {
+    	return this.tamanio;
+    }
+
+	public Direccion getDireccion() {
+		return this.direccion;
 	}
 
-	public void setPosicion(Punto otraPosicion) {
-		posicion = otraPosicion;
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
 	}
-
-	public float getTamanio() {
-		return tamanio;
-	}
-	
-	public void verificarCantidadDeEnergia(float cantidad) throws Exception{
-		if ( cantidad < 0) throws new CantidadDeEnergiaIncorrecta();
-	}
-
-	public void aumentarEnergia(float cantidad){ 
-		try { verificarCantidadDeEnergia(cantidad);
-				energia = energia + cantidad;
-		} catch (CantidadDeEnergiaIncorrecta e) {
-			System.err.println("Error " + e);
-		}			
-	}		
-
-	public void disminuirEnergia(float cantidad) {
-		try { verificarCantidadDeEnergia(cantidad);
-				energia = energia - cantidad;
-		} catch (CantidadDeEnergiaIncorrecta e) {
-			System.err.println("Error " + e);
-		}
-	}
-
-	public int getVelocidad() {
-		return velocidad;
-	}
-
-	public boolean getActivo() {
-		return activo;
-	}
-
-	public int getEquipo() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public boolean getExpansible() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public float getDanio() {
-		return ( energiaInicial - energia );
-	}
-
-	public float getEnergia() {
-		return energia;
-	}
-
 }
+

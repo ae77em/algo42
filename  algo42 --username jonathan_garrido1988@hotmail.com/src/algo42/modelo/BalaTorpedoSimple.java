@@ -7,5 +7,4 @@ public class BalaTorpedoSimple extends Bala {
 		this.velocidad = 7;
 		this.danio = 10;
 	}
-	
 }

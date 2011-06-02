@@ -1,29 +1,21 @@
 package algo42.modelo;
 
 public class LineaHorizontal extends Estrategia {
-	
-	private int sentido;
-	
-	public LineaHorizontal() {
-		this.actualizarDatosDeMovimiento();
-	}
-	
-	public void mover(){
-		float movimiento = nave.getPosicion().getY() + nave.getVelocidad()*sentido;
+        
+	public void usar(Nave nave, Mision tablero) {
+		this.tablero = tablero;
+		this.nave = nave;
+		Punto posicionDeNave = this.nave.getPosicion();
 		
-		nave.setPosicion(0,movimiento);
-		
-		this.actualizarDatosDeMovimiento();
-	}
-	
-	private void actualizarDatosDeMovimiento(){
-		if ( nave.getPosicion().getY() = 0 ){
-			sentido = DERECHA;
-		};
-		if ( nave.getPosicion().getY() = nave.getLimitesTablero().getY() ){
-			sentido = IZQUIERDA;
+		if (posicionDeNave.getY() == 99) {
+			this.nave.huir();
+		} else {
+			this.mover();
 		}
 	}
-	
 
+	public void mover() {
+		this.direccion = this.nave.getDireccion();
+		this.direccion.trasladar(this.nave, this.tablero);
+	}
 }
