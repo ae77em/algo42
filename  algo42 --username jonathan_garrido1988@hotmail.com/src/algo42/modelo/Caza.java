@@ -6,49 +6,44 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 public class Caza extends NaveArmada {
         
 	public Caza() {
-		this.estrategia = new IdaVuelta();
-		TorpedoSimple torpedoSimple = null;
-        try {
-        	torpedoSimple = new TorpedoSimple(-1, 2);
-        } catch (CantidadDeBalasIncorrecta e) {
-        	e.printStackTrace();
-        }
-        this.armas.add(torpedoSimple);
-        this.velocidad = 2;
-        this.energia = 250;
-        this.activo = false;
-        this.equipo = 2;
-        this.expansible = false;
-        this.danio = 250;
-        this.direccion = null;
-        this.tamanio = 1;
-        this.posicion = new Punto(0, 0);
-        this.puntaje = 30;
+		super(new IdaVuelta(), 2, 250, 250, 30);
+		int numeroAlAzar = (int) (Math.random()*2+1);
+		try {
+			if (numeroAlAzar == 1) {
+				super.agregarArma(new TorpedoSimple(-1, 2));
+			} else {
+				Arma arma = new TorpedoAdaptable(-1, 2);
+				super.agregarArma(arma);
+				arma.setNave(this);
+			}
+		} catch (CantidadDeBalasIncorrecta e) {
+			// Nunca se llega a tirar esta excepcion
+		}
 	}
-
+	
 	public void activar(Mision tablero, Punto posicion) {
-		this.activo = true;
-        this.tablero = tablero;
-        this.posicion = posicion;
-        this.direccion = new Abajo();
+		this.setActivo(true);
+        this.setTablero(tablero);
+        this.setPosicion(posicion);
+        this.setDireccion(new Abajo());
 	}
 	
 	public void aumentarEnergia(int cantidadEnergia) throws CantidadDeEnergiaIncorrecta {
 		if (cantidadEnergia <= 0) {
     		throw new CantidadDeEnergiaIncorrecta();
         } else {
-        	if ((250 - this.energia) >= cantidadEnergia) {
-                    this.energia = this.energia + cantidadEnergia;
+        	if ((250 - this.getEnergia()) >= cantidadEnergia) {
+                    this.setEnergia(this.getEnergia() + cantidadEnergia);
             } else {
-            	this.energia = 250;
+            	this.setEnergia(250);
             }
         }
 	}
 	
 	public void destruir() {
-		this.energia = 0;
-		this.activo = false;
-		this.tablero.aumentarPuntaje(this.puntaje);
-		this.tablero.ubicarObjetoEnPosicion(new CajaEnergia(), this.posicion);
+		this.setEnergia(0);
+		this.setActivo(false);
+		this.getTablero().aumentarPuntaje(this.getPuntaje());
+		this.getTablero().ubicarObjetoEnPosicion(new CajaEnergia(), this.getPosicion());
 	}
 }

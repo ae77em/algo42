@@ -3,19 +3,19 @@ package algo42.modelo;
 public class LineaHorizontal extends Estrategia {
         
 	public void usar(Nave nave, Mision tablero) {
-		this.tablero = tablero;
-		this.nave = nave;
-		Punto posicionDeNave = this.nave.getPosicion();
+		this.setTablero(tablero);
+		this.setNave(nave);
+		Punto posicionDeNave = this.getNave().getPosicion();
 		
 		if (posicionDeNave.getY() == 99) {
-			this.nave.huir();
+			this.getNave().huir();
 		} else {
 			this.mover();
 		}
 	}
 
 	public void mover() {
-		this.direccion = this.nave.getDireccion();
-		this.direccion.trasladar(this.nave, this.tablero);
+		this.setDireccion(this.getNave().getDireccion());
+		this.getDireccion().trasladar(this.getNave(), this.getTablero());
 	}
 }

@@ -16,11 +16,10 @@ public class Algo42 implements Movible {
         
     public Algo42() {
     	Laser laser = null;
-    	
         try {
         	laser = new Laser(-1, 1);
         } catch (CantidadDeBalasIncorrecta e) {
-        	e.printStackTrace();
+        	// Nunca se llega a tirar esta excepcion
         }
         this.armas.add(laser);
         this.velocidad = 2;
@@ -134,4 +133,3 @@ public class Algo42 implements Movible {
     	return this.tamanio;
     }
 }
-

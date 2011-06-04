@@ -7,12 +7,12 @@ public class IdaVuelta extends EstrategiaArmados {
 	private boolean vueltaYaHecha = false;
 	
 	public void usar(Nave nave, Mision tablero) {
-		this.tablero = tablero;
-		this.nave = nave;
-		Punto posicionDeNave = this.nave.getPosicion();
+		this.setTablero(tablero);
+		this.setNave(nave);
+		Punto posicionDeNave = this.getNave().getPosicion();
 		
 		if ((posicionDeNave.getY() == 2)&&(this.vueltaYaHecha == true)) {
-			this.nave.huir();
+			this.getNave().huir();
 		}
 		if (posicionDeNave.getY() == 99) {
 			this.girar();
@@ -24,20 +24,20 @@ public class IdaVuelta extends EstrategiaArmados {
 	}
 
 	public void mover() {
-		this.direccion = this.nave.getDireccion();
-		this.direccion.trasladar(this.nave, this.tablero);
+		this.setDireccion(this.getNave().getDireccion());
+		this.getDireccion().trasladar(this.getNave(), this.getTablero());
 	}
 
 	public void disparar() {
-		Iterator<Arma> iterador = ((NaveArmada) this.nave).getArmas().iterator();
+		Iterator<Arma> iterador = ((NaveArmada) this.getNave()).getArmas().iterator();
     	
     	while (iterador.hasNext()) {
-    		iterador.next().disparar(this.nave.getPosicion(), this.tablero, this.direccion);
+    		iterador.next().disparar(this.getNave().getPosicion(), this.getTablero(), this.getDireccion());
     	} 
 	}
 	
 	public void girar() {
-		this.nave.setDireccion(new Arriba());
+		this.getNave().setDireccion(new Arriba());
 		this.vueltaYaHecha = true;
 	}
 }

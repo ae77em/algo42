@@ -9,7 +9,7 @@ public class Laser extends Arma {
 	}
 	
 	public Bala getBala() {
-		BalaLaser balaLaser = new BalaLaser(this.equipo);
+		BalaLaser balaLaser = new BalaLaser(this.getEquipo());
 		return balaLaser;
 	}
 }

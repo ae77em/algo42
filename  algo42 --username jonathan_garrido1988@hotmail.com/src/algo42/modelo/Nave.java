@@ -4,26 +4,32 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
 public abstract class Nave implements Movible {
         
-    protected Mision tablero;
-	protected Estrategia estrategia;
-    protected Punto posicion;
-    protected Direccion direccion;
-    protected int tamanio;
-	protected int energia;
-	protected int puntaje;
-	protected int velocidad;
-	protected int equipo;
-	protected int danio;
-    protected boolean activo;
-	protected boolean expansible;
+    private Mision tablero;
+    private Estrategia estrategia;
+    private Punto posicion;
+    private Direccion direccion;
+    private int tamanio;
+    private int energia;
+    private int puntaje;
+    private int velocidad;
+    private int equipo;
+    private int danio;
+    private boolean activo;
+    private boolean expansible;
     
-    public Nave() {
+    public Nave(Estrategia estrategia, int velocidad, int energia, int danio, int puntaje) {
     	this.activo = false;
     	this.equipo = 2;
     	this.expansible = false;
     	this.tamanio = 1;
     	this.posicion = new Punto(0, 0);
     	this.direccion = null;
+    	this.estrategia = new IdaVuelta();
+        this.estrategia = estrategia;
+        this.velocidad = velocidad;
+        this.energia = energia;
+        this.danio = danio;
+        this.puntaje = puntaje;
     }
     
     public abstract void activar(Mision tablero, Punto posicion);
@@ -97,5 +103,24 @@ public abstract class Nave implements Movible {
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
+	
+	public void setActivo(boolean valor) {
+		this.activo = valor;
+	}
+	
+	public void setEnergia(int energia) {
+		this.energia = energia;
+	}
+	
+	public void setTablero(Mision tablero) {
+		this.tablero = tablero;
+	}
+	
+	public Mision getTablero() {
+		return this.tablero;
+	}
+	
+	public int getPuntaje() {
+		return this.puntaje;
+	}
 }
-

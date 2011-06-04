@@ -9,7 +9,7 @@ public class Cohete extends Arma {
 	}
 	
 	public Bala getBala() {
-		BalaCohete balaCohete = new BalaCohete(this.equipo);
+		BalaCohete balaCohete = new BalaCohete(this.getEquipo());
 		return balaCohete;
 	}
 }

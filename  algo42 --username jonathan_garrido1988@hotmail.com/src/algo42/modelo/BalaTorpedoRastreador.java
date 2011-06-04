@@ -4,36 +4,34 @@ public class BalaTorpedoRastreador extends Bala {
 
 	private int contadorDeTiempo;
 	
-	public BalaTorpedoRastreador(int equipo) {
-		super();
-		this.velocidad = 5;
-		this.danio = 20;
+	public BalaTorpedoRastreador(int unEquipo) {
+		super(unEquipo, 5, 20);
 		this.contadorDeTiempo = 0;
 	}
 	
 	public void mover() {
-		Punto posicionDelJugador = this.tablero.getPosicionDelJugador();
+		Punto posicionDelJugador = this.getTablero().getPosicionDelJugador();
 		if (this.contadorDeTiempo == 20) {
 			this.destruir();
 		} else {
 			this.contadorDeTiempo = this.contadorDeTiempo + 1;
 		}
-		if (this.activo == true) {
-			if (this.posicion.getX() > posicionDelJugador.getX()) {
-				this.direccion = new Izquierda();
+		if (this.getActivo() == true) {
+			if (this.getPosicion().getX() > posicionDelJugador.getX()) {
+				this.setDireccion(new Izquierda());
 			}
-			if (this.posicion.getX() < posicionDelJugador.getX()) {
-				this.direccion = new Derecha();
+			if (this.getPosicion().getX() < posicionDelJugador.getX()) {
+				this.setDireccion(new Derecha());
 			}
-			if (this.posicion.getY() > posicionDelJugador.getY()) {
-				this.direccion = new Arriba();
+			if (this.getPosicion().getY() > posicionDelJugador.getY()) {
+				this.setDireccion(new Arriba());
 			}
-			if (this.posicion.getY() < posicionDelJugador.getY()) {
-				this.direccion = new Abajo();
+			if (this.getPosicion().getY() < posicionDelJugador.getY()) {
+				this.setDireccion(new Abajo());
 			}
 		}
-		this.direccion.trasladar(this, this.tablero);
-		if ((this.posicion.getX() > 100)||(this.posicion.getX() < 1)||(this.posicion.getY() > 100)||(this.posicion.getY() < 1)) {
+		this.getDireccion().trasladar(this, this.getTablero());
+		if ((this.getPosicion().getX() > 100)||(this.getPosicion().getX() < 1)||(this.getPosicion().getY() > 100)||(this.getPosicion().getY() < 1)) {
 			this.destruir();
 		}
 	}

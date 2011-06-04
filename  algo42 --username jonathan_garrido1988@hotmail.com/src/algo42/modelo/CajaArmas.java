@@ -12,7 +12,6 @@ public class CajaArmas extends Objeto {
 		super();
 		Cohete cohete = null;
 		TorpedoRastreador torpedoRastreador = null;
-		this.armas = new ArrayList<Arma>();
 		
 		try {
 			cohete = new Cohete(30, 2);
@@ -25,7 +24,7 @@ public class CajaArmas extends Objeto {
 	}
 	
 	public void consumirPor(Algo42 algo42) {
-		if (this.activo == true) {
+		if (this.getActivo() == true) {
 			for (int i = 1; i <= armas.size(); i++) {
 				algo42.cargar(armas.remove(i));
 			}

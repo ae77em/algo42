@@ -4,20 +4,23 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
 public abstract class Bala implements Movible {
 
-	protected int velocidad, danio;
-	protected Mision tablero;
-	protected Punto posicion;
-	protected boolean activo;
-	protected Direccion direccion;
+	private int velocidad, danio;
+	private Mision tablero;
+	private Punto posicion;
+	private boolean activo;
+	private Direccion direccion;
 	private boolean expansible;
 	private int equipo, energia, tamanio;
 	
-	public Bala () {
+	public Bala (int equipo, int unaVelocidad, int unDanio){
+		this.velocidad = unaVelocidad;
+		this.danio = unDanio;
 		this.energia = 1;
 		this.tamanio = 0;
 		this.activo = false;
 		this.expansible = false;
 		this.posicion = new Punto(0,0);
+		this.equipo = equipo;
 	}
 	
 	public void aumentarEnergia(int cantidad) throws CantidadDeEnergiaIncorrecta {
@@ -66,6 +69,10 @@ public abstract class Bala implements Movible {
 		this.direccion = direccion;
 	}
 	
+	public Direccion getDireccion() {
+		return this.direccion;
+	}
+	
 	public Punto getPosicion() {
 		return this.posicion;
 	}
@@ -97,5 +104,8 @@ public abstract class Bala implements Movible {
 	public int getDanio() {
 		return this.danio;
 	}
+	
+	public Mision getTablero() {
+		return this.tablero;
+	}
 }
-
