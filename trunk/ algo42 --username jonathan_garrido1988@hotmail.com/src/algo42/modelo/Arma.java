@@ -4,8 +4,9 @@ import algo42.modelo.excepciones.CantidadDeBalasIncorrecta;
 
 public abstract class Arma {
 	
+	private NaveArmada nave;
 	private int cantidadDeBalas;
-	protected int equipo;
+	private int equipo;
 	
 	public Arma (int cantidadDeBalas, int equipo) throws CantidadDeBalasIncorrecta {
 		this.cargar(cantidadDeBalas);
@@ -23,11 +24,24 @@ public abstract class Arma {
 	public void disparar(Punto posicion, Mision tablero, Direccion direccion) {
 		if (this.cantidadDeBalas >= 1) {
 			this.cantidadDeBalas = this.cantidadDeBalas - 1;
+			direccion.disparar(posicion, tablero, this);
 		}
-		if (this.cantidadDeBalas != 0) {
+		if (this.cantidadDeBalas == -1) {
 			direccion.disparar(posicion, tablero, this);
 		}
 	}
 
 	public abstract Bala getBala();
+	
+	public int getEquipo() {
+		return this.equipo;
+	}
+	
+	public void setNave(NaveArmada nave) {
+		this.nave = nave;
+	}
+	
+	public NaveArmada getNave() {
+		return this.nave;
+	}
 }

@@ -16,23 +16,20 @@ public class Derecha extends Direccion {
 	public void trasladar(Movible objetoMovible, Mision tablero) {
 		Punto posicion = objetoMovible.getPosicion();
 		int velocidad = objetoMovible.getVelocidad();
-		int tamanio = objetoMovible.getTamanio();
 		Movible otroObjeto = null;
 		ResolvedorDeChoque resolvedorDeChoque = new ResolvedorDeChoque();
 		TipoDeChoque tipoDeChoque;
 		Punto posicionNueva;
 		
-		for (int i = posicion.getX() + tamanio + 1; i <= posicion.getX() + tamanio + velocidad; i++) {
-			for (int j = posicion.getY() - tamanio; j <= posicion.getY() + tamanio; j++) {
-				try {
-					otroObjeto = tablero.hayAlguien(new Punto(i, j));
-				} catch (CoordenadaFueraDeRangoError e) {
-					e.printStackTrace();
-				}
-				if ((otroObjeto != null)&&(otroObjeto.getActivo() == true)) {
-					tipoDeChoque = resolvedorDeChoque.resolver(objetoMovible, otroObjeto);
-					tipoDeChoque.chocarEntre(objetoMovible, otroObjeto);
-				}
+		for (int i = posicion.getX(); i <= posicion.getX() + velocidad; i++) {
+			try {
+				otroObjeto = tablero.hayAlguien(objetoMovible, new Punto(i, posicion.getY()));
+			} catch (CoordenadaFueraDeRangoError e) {
+				// Nunca se llega a tirar esta excepcion
+			}
+			if ((otroObjeto != null)&&(otroObjeto.getActivo() == true)) {
+				tipoDeChoque = resolvedorDeChoque.resolver(objetoMovible, otroObjeto);
+				tipoDeChoque.chocarEntre(objetoMovible, otroObjeto);
 			}
 		}
 		if (objetoMovible.getActivo() == true) {

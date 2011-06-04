@@ -12,7 +12,7 @@ public class CajaEnergia extends Objeto {
 	}
 	
 	public void consumirPor(Algo42 algo42) {
-		if (this.activo == true) {
+		if (this.getActivo() == true) {
 			try {
 				algo42.aumentarEnergia(this.cantidad);
 			} catch (CantidadDeEnergiaIncorrecta e) {

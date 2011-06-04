@@ -6,7 +6,7 @@ public abstract class Objeto implements Movible {
 
 	private Mision tablero;
 	private Punto posicion;
-	protected boolean activo;
+	private boolean activo;
 	private int equipo;
 	private Direccion direccion;
 	private int velocidad;
