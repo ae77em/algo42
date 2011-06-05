@@ -60,7 +60,10 @@ public class Algo42Test extends TestCase {
 	public void testRecibirDisparo() {
 		BalaLaser bala = new BalaLaser(2);
 		bala.setDireccion(new Abajo());
-		this.tablero.ubicarBalaEnPosicion(bala, new Punto(51, 97));
+		
+		//Activo la bala manualmente
+		Punto posicion = new Punto(51, 97);
+		bala.activar(this.tablero, posicion);
 		bala.mover();
 		int energia = jugador.getEnergia();
 		assertTrue(energia == 1000 - 10);

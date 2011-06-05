@@ -6,7 +6,7 @@ import algo42.modelo.excepciones.CantidadDeBalasIncorrecta;
 
 public class CajaArmas extends Objeto {
 
-	private ArrayList<Arma> armas;
+	private ArrayList<Arma> armas = new ArrayList<Arma>();
 	
 	public CajaArmas() {
 		super();
@@ -25,8 +25,8 @@ public class CajaArmas extends Objeto {
 	
 	public void consumirPor(Algo42 algo42) {
 		if (this.getActivo() == true) {
-			for (int i = 1; i <= armas.size(); i++) {
-				algo42.cargar(armas.remove(i));
+			for (int i = 0; i <= armas.size(); i++) {
+				algo42.cargar(armas.remove(0));
 			}
 			this.destruir();
 		}

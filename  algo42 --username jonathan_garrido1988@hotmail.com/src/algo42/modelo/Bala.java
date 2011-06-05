@@ -49,7 +49,7 @@ public abstract class Bala implements Movible {
 	}
 	
 	public void mover () {
-		if (this.activo = true) {
+		if (this.activo == true) {
 			if ((this.posicion.getX() > 100)||(this.posicion.getX() < 1)||(this.posicion.getY() > 100)||(this.posicion.getY() < 1)) {
 				this.destruir();
 			} else {

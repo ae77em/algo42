@@ -30,7 +30,7 @@ public abstract class Arma {
 			direccion.disparar(posicion, tablero, this);
 		}
 	}
-
+	
 	public abstract Bala getBala();
 	
 	public int getEquipo() {

@@ -6,7 +6,7 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
 public class Guia extends NaveArmada {
         
-	private ArrayList<Nave> navesDeFlota;
+	private ArrayList<Nave> navesDeFlota = new ArrayList<Nave>();
 	
 	public Guia() {
 		super(new ZigZag(), 4, 500, 500, 100);
