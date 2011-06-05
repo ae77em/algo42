@@ -5,12 +5,14 @@ import algo42.modelo.*;
 
 public class CivilTest extends TestCase {
 
-	private Juego juego = new Juego();
+	private Juego juego;
 	private Mision tablero;
-	private Nave nave = new Civil();
+	private Nave nave;
 	
 	public void setUp() {
+		this.juego = new Juego();
 		this.tablero = new Mision(this.juego);
+		this.nave = new Civil();
 		this.nave.activar(this.tablero, new Punto(51, 2));
 	}
 	
@@ -19,7 +21,7 @@ public class CivilTest extends TestCase {
 		for (int i = 1; i <= tiempo; i++) {
 			this.nave.actuar();
 		}
-		assertTrue(this.nave.getPosicion().getX() == 3);
+		assertTrue(this.nave.getPosicion().getX() == 52);
 	}
 	
 	public void testDestruirAumentaPuntaje() {

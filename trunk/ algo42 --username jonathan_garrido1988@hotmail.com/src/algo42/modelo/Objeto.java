@@ -31,7 +31,6 @@ public abstract class Objeto implements Movible {
 		this.activo = true;
 		this.tablero = tablero;
 		this.posicion = posicion;
-		this.tablero.ubicarObjetoEnPosicion(this, posicion);
 	}
 	
 	public void destruir() {
@@ -39,8 +38,8 @@ public abstract class Objeto implements Movible {
 	}
 	
 	public void mover() {
-		if (this.activo = true) {
-			if (this.posicion.getY() >= 100) {
+		if (this.activo == true) {
+			if ((this.posicion.getY() + this.velocidad) >= 100) {
 				this.destruir();
 			} else {
 				this.direccion.trasladar(this, tablero);

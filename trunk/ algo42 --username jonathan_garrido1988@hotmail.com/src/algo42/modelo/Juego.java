@@ -6,11 +6,11 @@ public class Juego {
 	private int ganaste;
 	
 	public Juego() {
-		this.mision = new Mision(this);
 		this.ganaste = 0;
 	}
 	
 	public void comenzar() {
+		this.mision = new Mision(this);
 		this.mision.comenzar();
 	}
 

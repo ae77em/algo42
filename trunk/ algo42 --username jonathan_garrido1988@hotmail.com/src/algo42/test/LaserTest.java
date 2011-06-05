@@ -18,11 +18,10 @@ public class LaserTest extends TestCase {
 		try {
 			this.laser = new Laser(-1,1);
 		} catch (CantidadDeBalasIncorrecta e) {
-			e.printStackTrace();
+
 		}
 		this.laser.disparar(new Punto(51, 99), this.tablero, new Arriba());
 		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51, 97));
-		assertTrue(objeto.getClass().getName() == "BalaLaser");
-	}
-	
+		assertTrue(objeto != null);
+	}	
 }

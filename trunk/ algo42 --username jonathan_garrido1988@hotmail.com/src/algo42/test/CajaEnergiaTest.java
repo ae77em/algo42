@@ -16,7 +16,6 @@ public class CajaEnergiaTest extends TestCase {
 	public void testConsumir() {
 		Algo42 jugador = this.tablero.getJugador();
 		this.tablero.ubicarObjetoEnPosicion(caja, new Punto(51, 95));
-		this.tablero.ubicarNaveDelJugador();
 		int tiempo = 1;
 		for (int i = 1; i <= tiempo; i++) {
 			jugador.volar(1);

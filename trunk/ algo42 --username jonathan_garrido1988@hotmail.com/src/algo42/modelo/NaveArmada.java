@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class NaveArmada extends Nave {
 
-	private ArrayList<Arma> armas;
+	private ArrayList<Arma> armas = new ArrayList<Arma>();
 	
 	public NaveArmada(Estrategia estrategia, int velocidad, int energia, int danio, int puntaje) {
 		super(estrategia, velocidad, energia, danio, puntaje);

@@ -5,12 +5,14 @@ import algo42.modelo.*;
 
 public class BombarderoTest extends TestCase {
 
-	private Juego juego = new Juego();
+	private Juego juego;
 	private Mision tablero;
-	private Nave nave = new Bombardero();
+	private Nave nave;
 	
 	public void setUp() {
+		this.juego = new Juego();
 		this.tablero = new Mision(this.juego);
+		this.nave = new Bombardero();
 		this.nave.activar(this.tablero, new Punto(51, 2));
 	}
 	
@@ -20,11 +22,11 @@ public class BombarderoTest extends TestCase {
 		for (int i = 1; i <= tiempo; i++) {
 			this.nave.actuar();
 		}
-		assertTrue((this.nave.getPosicion().equals(new Punto(posicion.getX(), 3))));
+		assertTrue((this.nave.getPosicion().equals(new Punto(posicion.getX(), 5))));
 	}
 	
 	public void testDestruirAumentaPuntaje() {
 		this.nave.destruir();
-		assertTrue(this.tablero.getPuntajeDelJugador() == 30);
+		assertTrue(this.tablero.getPuntajeDelJugador() == 20);
 	}	
 }

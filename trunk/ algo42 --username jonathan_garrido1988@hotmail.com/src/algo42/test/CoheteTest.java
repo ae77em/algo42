@@ -22,14 +22,15 @@ public class CoheteTest extends TestCase {
 		}
 		this.cohete.disparar(new Punto(51, 99), this.tablero, new Arriba());
 		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51, 97));
-		assertTrue(objeto.getClass().getName() == "BalaCohete");
+		assertTrue(objeto != null);
 	}
 	
 	public void testDispararNoDispara() {
 		try {
+			//No le paso ninguna cantidad de balas
 			this.cohete = new Cohete(0,1);
 		} catch (CantidadDeBalasIncorrecta e) {
-			e.printStackTrace();
+
 		}
 		this.cohete.disparar(new Punto(51, 99), this.tablero, new Arriba());
 		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51, 97));

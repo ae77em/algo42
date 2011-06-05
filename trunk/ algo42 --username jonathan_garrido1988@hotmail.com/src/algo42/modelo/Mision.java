@@ -83,7 +83,9 @@ public class Mision {
     	} else {                  
     		for (int i = 0; i < (this.espacioAereo.size()); i ++) {
     			if (this.espacioAereo.get(i).getPosicion().distancia(posicion) <= (this.espacioAereo.get(i).getTamanio() + objetoAMover.getTamanio())){
-    				casillero = this.espacioAereo.get(i);
+    				if (this.espacioAereo.get(i) != objetoAMover){
+    					casillero = this.espacioAereo.get(i);
+    				}
     			}
     		}
     	}
@@ -101,10 +103,9 @@ public class Mision {
     		// Nunca se llega a tirar esta excepcion
     	}
     	
-    	bala.activar(this, posicion);
     	if (objeto == null) {
     		this.espacioAereo.add(0, bala);
-    	} else {
+    	} else if(objeto != bala){
     		resolvedorDeChoque = new ResolvedorDeChoque();
     		tipoDeChoque = resolvedorDeChoque.resolver(bala, objeto);
     		tipoDeChoque.chocarEntre(bala, objeto);

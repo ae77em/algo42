@@ -18,18 +18,18 @@ public class TorpedoRastreadorTest extends TestCase {
 		try {
 			this.torpedoRastreador = new Cohete(1,1);
 		} catch (CantidadDeBalasIncorrecta e) {
-			e.printStackTrace();
+
 		}
 		this.torpedoRastreador.disparar(new Punto(51, 99), this.tablero, new Arriba());
 		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51, 97));
-		assertTrue(objeto.getClass().getName() == "BalaTorpedoRastreador");
+		assertTrue(objeto != null);
 	}
 	
 	public void testDispararNoDispara() {
 		try {
 			this.torpedoRastreador = new Cohete(0,1);
 		} catch (CantidadDeBalasIncorrecta e) {
-			e.printStackTrace();
+
 		}
 		this.torpedoRastreador.disparar(new Punto(51, 99), this.tablero, new Arriba());
 		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51, 97));

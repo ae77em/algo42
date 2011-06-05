@@ -6,6 +6,7 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 public class Bombardero extends NaveArmada {
 	
 	public Bombardero() {
+
 		super(new ZigZag(), 3, 150, 150, 20);
 		try {
 			super.agregarArma(new Laser(-1, 2));

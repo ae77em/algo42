@@ -6,6 +6,7 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 public class Caza extends NaveArmada {
         
 	public Caza() {
+
 		super(new IdaVuelta(), 2, 250, 250, 30);
 		int numeroAlAzar = (int) (Math.random()*2+1);
 		try {
