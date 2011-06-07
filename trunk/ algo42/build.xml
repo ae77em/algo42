@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<project name="algo42-Build" default="compile">
+    <target name="clean" description="borrar archivos temporales">
+        <delete dir="class"/>
+    </target>
+    <target name="clobber" depends="clean" description="eliminar todos los archivos artefacto">
+        <delete file="algo42.jar"/>
+    </target>
+    <target name="compile" description="compilar el código java a un archivo class">
+        <mkdir dir="bin"/>
+        <javac srcdir="." destdir="bin"/>
+    </target>
+    <target name="jar" depends="compile" description="crear un archivo Jar para la aplicación">
+        <jar destfile="algo42.jar">
+            <fileset dir="bin" includes="**/*.class"/>
+            <manifest>
+                <attribute name="Main-Class" value="HelloProgram"/>
+            </manifest>
+        </jar>
+    </target>
+</project>
