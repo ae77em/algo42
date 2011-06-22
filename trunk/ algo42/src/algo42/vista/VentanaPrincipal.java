@@ -1,7 +1,6 @@
 package algo42.vista;
 
 import java.awt.Button;
-import java.awt.Color;
 import java.awt.Label;
 
 import algo42.controlador.GestionBotonAnteriorRecords;
@@ -11,7 +10,6 @@ import algo42.controlador.GestionDeBotonStart;
 import algo42.titiritero.ControladorJuego;
 import algo42.titiritero.vista.Ventana;
 
-
 public class VentanaPrincipal extends Ventana{
 	/**
 	 * 
@@ -19,12 +17,14 @@ public class VentanaPrincipal extends Ventana{
 	private static final long serialVersionUID = 1L;
 	private int ancho;
 	private int alto;
+	private ControladorJuego controlador;
 
 	public VentanaPrincipal(int ancho, int alto, ControladorJuego unControlador) {
 		super(ancho, alto, unControlador);
 		
 		this.ancho = ancho;
 		this.alto = alto;
+		this.controlador = unControlador;
 		
 		this.setTitle("Algo42");
 		this.setResizable(false);
@@ -43,7 +43,7 @@ public class VentanaPrincipal extends Ventana{
 		
 		Button start = new Button("Start");		
 		start.setBounds(this.ancho / 2 - 50, this.alto / 2 + 50, 105, 32);
-		GestionDeBotonStart gbotonStart = new GestionDeBotonStart();
+		GestionDeBotonStart gbotonStart = new GestionDeBotonStart(controlador);
 		start.addActionListener(gbotonStart);
 
 		Button records = new Button("Record");
@@ -71,7 +71,7 @@ public class VentanaPrincipal extends Ventana{
 		fondo.setBounds(0, 0, 640, 480);
 
 		Button anterior = new Button("Anterior");
-		anterior.setBounds(10, this.alto - 50, 100, 30);
+		anterior.setBounds(10, this.alto - 40, 100, 30);
 		GestionBotonAnteriorRecords gbAnterior = new GestionBotonAnteriorRecords(this);
 		anterior.addActionListener(gbAnterior);
 
@@ -80,53 +80,38 @@ public class VentanaPrincipal extends Ventana{
 		titulo.setText("Records");
 		titulo.setFont(new java.awt.Font("Arial", 0, 20));
 
-		Label[] label = new Label[12];
-		for (int i = 0; i < 10; i++){
-			label[i] = new Label();
-			label[i].setForeground(Color.WHITE);
-			this.add(label[i]);
-			label[i].setText(" "+(i+1));
-			label[i].setBounds(200, 60 + i * 30, 95, 155);
-			label[i].setFont(new java.awt.Font("Arial",0,20));
+		Label labelNombre = new Label();
+		labelNombre.setText("      Nombre");
+		labelNombre.setBounds(10, 30, 95, 20);
+		labelNombre.setFont(new java.awt.Font("Arial",0,16));
+			
+		Label labelTiempo = new Label();
+		labelTiempo.setText("Puntos");
+		labelTiempo.setBounds(ancho - 100, 30, 95, 20);
+		labelTiempo.setFont(new java.awt.Font("Arial",0,16));
+		
+		//Aca habria que agregar la parte de persistencia. La parte de leer los puntajes maximos.
+			
+		int cant = 10;
+		Label [] labelRecordsNombre = new Label[cant];
+		Label[] labelRecordsPuntaje = new Label[cant];
+		for (int i = 0; i < cant; i++) {
+			labelRecordsNombre[i] = new Label();
+			labelRecordsNombre[i].setText((i + 1) + ".-------------------");
+			labelRecordsNombre[i].setBounds(10, 60 + i * 30, 100, 25);
+			labelRecordsNombre[i].setFont(new java.awt.Font("Arial",0,16));
+			
+			labelRecordsPuntaje[i] = new Label();
+			labelRecordsPuntaje[i].setText("-----------");
+			labelRecordsPuntaje[i].setBounds(ancho - 110, 60 + i * 30, 100, 25);
+			labelRecordsPuntaje[i].setFont(new java.awt.Font("Arial", 0, 16));
+			
+			this.add(labelRecordsNombre[i]);
+			this.add(labelRecordsPuntaje[i]);
 		}
 		
-		label[10] = new Label();
-		label[10].setForeground(Color.WHITE);
-		this.add(label[10]);
-		label[10].setText("Nombre");
-		label[10].setBounds(250, 30, 95, 155);
-		label[10].setFont(new java.awt.Font("Arial",0,20));
-			
-		label[11] = new Label();
-		label[11].setForeground(Color.WHITE);
-		this.add(label[11]);
-		label[11].setText("Tiempo");
-		label[11].setBounds(350, 30, 95, 155);
-		label[11].setFont(new java.awt.Font("Arial",0,20));
-		
-		
-//		String archivoRecords = "Test";
-//		
-//		Persistencia persistencia = new Persistencia();
-//		
-//		Record records = (Record)persistencia.leer(archivoRecords);
-//			
-//		int cant = records.getCantidadDeRecords();
-//		String [][] todo = new String[2][cant];
-//		todo = records.obtenerTodos();
-//		Label [][] labelRecords = new Label[2][cant];
-//			
-//		for (int j = 0; j < cant; j++) {
-//			for (int i = 0; i < 2; i++) {								
-//				labelRecords[i][j] = new Label();
-//				labelRecords[i][j].setForeground(Color.WHITE);
-//				this.add(labelRecords[i][j]);
-//				labelRecords[i][j].setText(todo[i][j]);
-//				labelRecords[i][j].setBounds(250 + i * 100, 60 + j * 30, 95, 155);
-//				labelRecords[i][j].setFont(new java.awt.Font("Arial",0,20));
-//			}
-//		}
-
+		this.add(labelTiempo);
+		this.add(labelNombre);
 		this.add(titulo);
 		this.add(anterior);
 		this.add(fondo);

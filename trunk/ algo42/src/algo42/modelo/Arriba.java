@@ -1,9 +1,12 @@
 package algo42.modelo;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import algo42.modelo.excepciones.CoordenadaFueraDeRangoError;
 
 public class Arriba extends Direccion {
-
+	
 	public void disparar(Punto posicion, Mision tablero, Arma arma) {
 		Bala bala = arma.getBala();
 		Punto posicionBala = new Punto(posicion.getX(), posicion.getY() - 2);
@@ -34,10 +37,14 @@ public class Arriba extends Direccion {
 		}
 		if (objetoMovible.getActivo() == true) {
 			posicionNueva = new Punto(posicion.getX(), posicion.getY() - velocidad);
-			if (posicionNueva.getY() <= 1) {
-				posicionNueva = new Punto(posicion.getX(), 2);
+			if (posicionNueva.getY() < 1) {
+				posicionNueva = new Punto(posicion.getX(), 1);
 			}
 			objetoMovible.setPosicion(posicionNueva);
 		}
+	}
+	
+	public void persistir(Document doc, Element elemento) {
+		elemento.setTextContent("Arriba");
 	}
 }

@@ -2,7 +2,6 @@ package algo42.modelo;
 
 public class ContraConsumible extends TipoDeChoque {
 
-
 	public void chocarEntre(Movible autor, Movible victima) {
 		if ((autor.getActivo() == true)&&(victima.getActivo() == true)) {
 			if (autor.getExpansible() == true) {

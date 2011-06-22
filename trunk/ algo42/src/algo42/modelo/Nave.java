@@ -8,14 +8,8 @@ public abstract class Nave implements Movible {
     private Estrategia estrategia;
     private Punto posicion;
     private Direccion direccion;
-    private int tamanio;
-    private int energia;
-    private int puntaje;
-    private int velocidad;
-    private int equipo;
-    private int danio;
-    private boolean activo;
-    private boolean expansible;
+    private int tamanio, energia, puntaje, velocidad, equipo, danio;
+    private boolean activo, expansible;
     
     public Nave(Estrategia estrategia, int velocidad, int energia, int danio, int puntaje) {
     	this.activo = false;
@@ -100,6 +94,34 @@ public abstract class Nave implements Movible {
 		return this.direccion;
 	}
 
+	public void setEstrategia(Estrategia estrategia) {
+		this.estrategia = estrategia;
+	}
+	
+	public void setExpansible(boolean expansible) {
+		this.expansible = expansible;
+	}
+	
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
+	
+	public void setTamanio(int tamanio) {
+		this.tamanio = tamanio;
+	}
+	
+	public void setDanio(int danio) {
+		this.danio = danio;
+	}
+	
+	public void setEquipo(int equipo) {
+		this.equipo = equipo;
+	}
+	
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+	
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
@@ -122,5 +144,25 @@ public abstract class Nave implements Movible {
 	
 	public int getPuntaje() {
 		return this.puntaje;
+	}
+	
+	public Estrategia getEstrategia() {
+		return this.estrategia;
+	}
+	
+	public void mover() {
+		this.actuar();
+	}
+	
+	public int getX() {
+		return this.posicion.getX();
+	}
+
+	public int getY() {
+		return this.posicion.getY();
+	}
+	
+	public void vivir() {
+		this.mover();
 	}
 }

@@ -1,5 +1,10 @@
 package algo42.modelo;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 public class Circulo extends Estrategia {
 	
 	public void usar(Nave nave, Mision tablero) {
@@ -68,5 +73,33 @@ public class Circulo extends Estrategia {
 	public void mover() {
 		this.setDireccion(this.getNave().getDireccion());
 		this.getDireccion().trasladar(this.getNave(), this.getTablero());
+	}
+
+	public void persistir(Document doc, Element elemento) {
+		Element circulo = doc.createElement("Circulo");
+		elemento.appendChild(circulo);
+		
+			Element direccion = doc.createElement("Direccion");
+			circulo.appendChild(direccion);
+			this.getDireccion().persistir(doc, circulo);
+	}
+	
+	public Estrategia recuperar(Element element, Circulo circulo) {
+		NodeList childs = element.getChildNodes();
+		for (int i = 0; i < childs.getLength(); i++) {
+			Node child = childs.item(i);
+			if (child.getNodeName().equals("Direccion")) {
+				if (child.getTextContent() == "Abajo") {
+					circulo.setDireccion(new Abajo());
+				} else if (child.getTextContent() == "Arriba") {
+					circulo.setDireccion(new Arriba());
+				} else if (child.getTextContent() == "Derecha") {
+					circulo.setDireccion(new Derecha());
+				} else {
+					circulo.setDireccion(new Izquierda());
+				}
+			}
+		}
+		return circulo;
 	}
 }

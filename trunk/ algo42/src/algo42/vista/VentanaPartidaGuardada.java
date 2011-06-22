@@ -8,6 +8,9 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import algo42.controlador.GestionDeBotonContinuar;
+import algo42.controlador.GestionDeBotonJuegoNuevo;
+import algo42.titiritero.ControladorJuego;
 
 public class VentanaPartidaGuardada extends Frame{
 	/**
@@ -17,7 +20,7 @@ public class VentanaPartidaGuardada extends Frame{
 	private int ancho = 500;
 	private int alto = 200;
 	
-	public VentanaPartidaGuardada(){
+	public VentanaPartidaGuardada(ControladorJuego unControlador){
 		
 		setSize(ancho, alto);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -25,13 +28,13 @@ public class VentanaPartidaGuardada extends Frame{
 		int x = (screenSize.width - frameSize.width) / 2;
 		int y = (screenSize.height - frameSize.height) / 2;
 		setLocation(x, y);
+		
+		//Redefino este método para que se cierre solo esta ventana y no todo el programa
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				dispose();
+				cerrar();
 			}
 		});
-		
-		
 		this.setTitle("Algo42 - Partida guardada");
 		this.setResizable(false);
 		this.setVisible(true);
@@ -51,14 +54,22 @@ public class VentanaPartidaGuardada extends Frame{
 	
 		Button juegoNuevo = new Button("Juego nuevo");		
 		juegoNuevo.setBounds(10, this.alto / 2 + 50, 100, 30);
+		GestionDeBotonJuegoNuevo gbotonJuegoNuevo = new GestionDeBotonJuegoNuevo(this, unControlador);
+		juegoNuevo.addActionListener(gbotonJuegoNuevo);
 		
 		Button continuar = new Button("Continuar");
 		continuar.setBounds(this.ancho - 120, this.alto / 2 + 50, 100, 30);
+		GestionDeBotonContinuar gbotonContinuar = new GestionDeBotonContinuar(this);
+		continuar.addActionListener(gbotonContinuar);
 		
 		this.add(label1);
 		this.add(label2);
 		this.add(juegoNuevo);
 		this.add(continuar);
 		this.add(fondo);
+	}
+	
+	public void cerrar(){
+		dispose();
 	}
 }

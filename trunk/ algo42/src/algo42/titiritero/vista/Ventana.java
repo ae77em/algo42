@@ -86,5 +86,8 @@ alizes this
 		});
 	}
 		//initialize();
+	public Object getBuffer() {
+		return this.imagen.getGraphics();
+	}
 	
 }  //  @jve:decl-index=0:visual-constraint="10,10"

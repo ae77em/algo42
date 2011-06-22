@@ -1,12 +1,14 @@
 package algo42.modelo;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import algo42.modelo.excepciones.CantidadDeBalasIncorrecta;
 
 public abstract class Arma {
 	
 	private NaveArmada nave;
-	private int cantidadDeBalas;
-	private int equipo;
+	private int cantidadDeBalas, equipo;
 	
 	public Arma (int cantidadDeBalas, int equipo) throws CantidadDeBalasIncorrecta {
 		this.cargar(cantidadDeBalas);
@@ -37,6 +39,10 @@ public abstract class Arma {
 		return this.equipo;
 	}
 	
+	public void setEquipo(int equipo) {
+		this.equipo = equipo;
+	}
+	
 	public void setNave(NaveArmada nave) {
 		this.nave = nave;
 	}
@@ -44,4 +50,14 @@ public abstract class Arma {
 	public NaveArmada getNave() {
 		return this.nave;
 	}
+	
+	public int getCantidadDeBalas() {
+		return this.cantidadDeBalas;
+	}
+	
+	public void setCantidadDeBalas(int cantidadDeBalas) {
+		this.cantidadDeBalas = cantidadDeBalas;
+	}
+
+	public abstract void persistir(Document doc, Element armas);
 }

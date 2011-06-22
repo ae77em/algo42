@@ -2,6 +2,11 @@ package algo42.modelo;
 
 import java.util.ArrayList;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 public class Flota {	
 
 	private ArrayList<Punto> posicionesNaves = new ArrayList<Punto>();
@@ -63,5 +68,63 @@ public class Flota {
 
 	public Punto getPosicionNave(int i) {
 		return this.posicionesNaves.remove(i);
+	}
+
+	public void persistir(Document doc, Element mision) {
+		Element posicionesNaves = doc.createElement("Posiciones De Naves");
+		mision.appendChild(posicionesNaves);
+		for (int i = 0; i < (this.posicionesNaves.size()); i ++) {
+			this.posicionesNaves.get(i).persistir(doc, posicionesNaves);
+		}
+		
+		Element naves = doc.createElement("Naves");
+		mision.appendChild(naves);
+		for (int i = 0; i < (this.naves.size()); i ++) {
+			this.naves.get(i).persistir(doc, naves);
+		}
+	}
+
+	public Flota recuperar(Element element, Flota flota) {
+		NodeList childs = element.getChildNodes();
+		for (int i = 0; i < childs.getLength(); i++) {
+			Node child = childs.item(i);
+			if (child.getNodeName().equals("Posiciones De Naves")) {
+				ArrayList<Punto> posicionesNaves = new ArrayList<Punto>();
+				NodeList childs2 = element.getChildNodes();
+				for (int j = 0; i < childs2.getLength(); i++) {
+					Node child2 = childs2.item(j);
+					Punto posicion = new Punto(0,0);
+					posicionesNaves.add(posicion.recuperar(element, posicion));
+				}
+				flota.posicionesNaves = posicionesNaves;
+			} else if (child.getNodeName().equals("Naves")) {
+				ArrayList<Movible> naves = new ArrayList<Movible>();
+				NodeList childs2 = element.getChildNodes();
+				for (int j = 0; i < childs2.getLength(); i++) {
+					Node child2 = childs2.item(j);
+					if (child2.getNodeName().equals("Avioneta")) {
+						Avioneta avioneta = new Avioneta();
+						naves.add(avioneta.recuperar(element, avioneta));
+					} else if (child2.getNodeName().equals("Bombardero")) {
+						Bombardero bombardero = new Bombardero();
+						naves.add(bombardero.recuperar(element, bombardero));
+					} else if (child2.getNodeName().equals("Caza")) {
+						Caza caza = new Caza();
+						naves.add(caza.recuperar(element, caza));
+					} else if (child2.getNodeName().equals("Explorador")) {
+						Explorador explorador = new Explorador();
+						naves.add(explorador.recuperar(element, explorador));
+					} else if (child2.getNodeName().equals("Guia")) {
+						Guia guia = new Guia();
+						naves.add(guia.recuperar(element, guia));
+					} else if (child2.getNodeName().equals("Helicoptero")) {
+						Helicoptero helicoptero = new Helicoptero();
+						naves.add(helicoptero.recuperar(element, helicoptero));
+					} 
+				}
+				flota.naves = naves;
+			}
+		}
+		return flota;
 	}
 }

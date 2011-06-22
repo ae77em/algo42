@@ -1,5 +1,6 @@
 package algo42.titiritero;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +16,7 @@ public class ControladorJuego {
 		this.objetosVivos = new ArrayList();
 		this.dibujables = new ArrayList();
 		this.mouseClickObservadores = new ArrayList();
+		this.keyPressedObservadores = new ArrayList<KeyPressedObservador>();
 	}
 	
 	public void comenzar(){
@@ -105,10 +107,25 @@ public class ControladorJuego {
 		this.mouseClickObservadores.remove(unMouseClickObservador);
 	}
 	
+	public void despacharKeyPress(KeyEvent event){
+		for (KeyPressedObservador observador : this.keyPressedObservadores){
+			observador.keyPressed(event);
+		}
+	}
+	
+	public void agregarKeyPressObservador(KeyPressedObservador unMouseClickObservador){
+		this.keyPressedObservadores.add(unMouseClickObservador);
+	}
+	
+	public void removerKeyPressObservador(KeyPressedObservador unMouseClickObservador){
+		this.keyPressedObservadores.remove(unMouseClickObservador);
+	}
+	
 	private long intervaloSimulacion;
 	private boolean estaEnEjecucion;
 	private List objetosVivos;
 	private List dibujables;
 	private List mouseClickObservadores;
+	private List<KeyPressedObservador> keyPressedObservadores;
 	private SuperficieDeDibujo superficieDeDibujo;	
 }

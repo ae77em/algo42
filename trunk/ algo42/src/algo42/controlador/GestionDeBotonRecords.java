@@ -5,16 +5,15 @@ import java.awt.event.ActionListener;
 
 import algo42.vista.VentanaPrincipal;
 
-
-public class GestionDeBotonRecords implements ActionListener{
+public class GestionDeBotonRecords implements ActionListener {
+	
 	VentanaPrincipal ventana;
 	
-	public GestionDeBotonRecords(VentanaPrincipal ventana){
+	public GestionDeBotonRecords(VentanaPrincipal ventana) {
 		this.ventana = ventana;
 	}
-	@Override
+	
 	public void actionPerformed(ActionEvent arg0) {
-		
 		this.ventana.removeAll();
 		this.ventana.cargarPantallaRecords();
 		this.ventana.repaint();	

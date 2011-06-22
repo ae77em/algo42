@@ -2,6 +2,11 @@ package algo42.modelo;
 
 import java.util.Calendar;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import algo42.modelo.excepciones.CantidadDeBalasIncorrecta;
 
 public class TorpedoAdaptable extends Arma {
@@ -41,10 +46,63 @@ public class TorpedoAdaptable extends Arma {
 	public Bala getBala() {
 		Calendar calendario = Calendar.getInstance();
 		int tiempoActual = calendario.get(Calendar.SECOND);
-		if (tiempoActual - this.tiempoDesdeEleccionDeArma >= 10) { // Cada 10 segundos cambia el rama con que dispara
+		if (tiempoActual - this.tiempoDesdeEleccionDeArma >= 10) { // Cada 10 segundos cambia el arma con que dispara
 			this.cambiarArmaQueUsa(this.getNave());
 		}
 		return this.armaQueUsa.getBala();
 	}
-
+	
+	public void persistir(Document doc, Element armas) {
+		Element torpedoAdaptable = doc.createElement("Torpedo Adaptable");
+		armas.appendChild(torpedoAdaptable);
+		
+			Element cantidadDeBalas = doc.createElement("Cantidad De Balas");
+			torpedoAdaptable.appendChild(cantidadDeBalas);
+			cantidadDeBalas.setTextContent(Integer.toString(this.getCantidadDeBalas()));
+		
+			Element equipo = doc.createElement("Equipo");
+			torpedoAdaptable.appendChild(equipo);
+			equipo.setTextContent(Integer.toString(this.getEquipo()));
+			
+			Element armaQueUsa = doc.createElement("Arma Que Usa");
+			torpedoAdaptable.appendChild(armaQueUsa);
+			this.armaQueUsa.persistir(doc, armaQueUsa);
+			
+			Element tiempoDesdeEleccionDeArma = doc.createElement("Tiempo Desde Eleccion De Arma");
+			torpedoAdaptable.appendChild(tiempoDesdeEleccionDeArma);
+			tiempoDesdeEleccionDeArma.setTextContent(Integer.toString(this.tiempoDesdeEleccionDeArma));
+	}
+	
+	public Arma recuperar(Element element, TorpedoAdaptable torpedoAdaptable) {
+		NodeList childs = element.getChildNodes();
+		for (int i = 0; i < childs.getLength(); i++) {
+			Node child = childs.item(i);
+			if (child.getNodeName().equals("Cantidad De Balas")) {
+				torpedoAdaptable.setCantidadDeBalas(Integer.parseInt(child.getTextContent()));
+			} else if (child.getNodeName().equals("Equipo")) {
+				torpedoAdaptable.setEquipo(Integer.parseInt(child.getTextContent()));
+			} else if (child.getNodeName().equals("Arma Que Usa")) {
+				try {
+					if (child.getTextContent() == "Cohete") {
+						Cohete cohete = new Cohete(-2, -2);
+						torpedoAdaptable.armaQueUsa = cohete.recuperar(element, cohete);
+					} else if (child.getTextContent() == "Laser") {
+						Laser laser = new Laser(-2, -2);
+						torpedoAdaptable.armaQueUsa = laser.recuperar(element, laser);
+					} else if (child.getTextContent() == "Torpedo Rastreador") {
+						TorpedoRastreador torpedoRastreador = new TorpedoRastreador(-2, -2);
+						torpedoAdaptable.armaQueUsa = torpedoRastreador.recuperar(element, torpedoRastreador);
+					} else {
+						Cohete cohete = new Cohete(-2, -2);
+						torpedoAdaptable.armaQueUsa = cohete.recuperar(element, cohete);
+					}
+				} catch (CantidadDeBalasIncorrecta e) {
+					// Nunca se llega a tirar esta excepcion
+				}
+			} else if (child.getNodeName().equals("Tiempo Desde Eleccion De Arma")) {
+				torpedoAdaptable.tiempoDesdeEleccionDeArma = Integer.parseInt(child.getTextContent());
+			}
+		}
+		return torpedoAdaptable;
+	}
 }
