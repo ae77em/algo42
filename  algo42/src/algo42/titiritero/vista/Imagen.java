@@ -15,7 +15,7 @@ import algo42.titiritero.SuperficieDeDibujo;
  * Esta clase representa una imagen JPG abstrayendo al usuario de los detalles de Java2D
  * Simplemente requiere de una referencia al nombre del archivo JPG
  */
-public class Imagen implements Dibujable{
+public class Imagen implements Dibujable {
 	
 	public Imagen(){
 		
@@ -53,5 +53,9 @@ public class Imagen implements Dibujable{
 	private String nombreArchivoImagen;
     private BufferedImage imagen;
     private Posicionable posicionable;
+	public BufferedImage getImagen() {
+
+		return this.imagen;
+	}
 
 }

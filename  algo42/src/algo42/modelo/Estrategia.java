@@ -1,5 +1,8 @@
 package algo42.modelo;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 public abstract class Estrategia {
         
 	private Nave nave;
@@ -33,4 +36,6 @@ public abstract class Estrategia {
 	public Direccion getDireccion() {
 		return this.direccion;
 	}
+
+	public abstract void persistir(Document doc, Element elemento);
 }

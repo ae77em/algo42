@@ -4,13 +4,11 @@ import algo42.modelo.excepciones.CantidadDeEnergiaIncorrecta;
 
 public abstract class Bala implements Movible {
 
-	private int velocidad, danio;
+	private int velocidad, danio, equipo, energia, tamanio;
 	private Mision tablero;
 	private Punto posicion;
-	private boolean activo;
+	private boolean activo, expansible;
 	private Direccion direccion;
-	private boolean expansible;
-	private int equipo, energia, tamanio;
 	
 	public Bala (int equipo, int unaVelocidad, int unDanio){
 		this.velocidad = unaVelocidad;
@@ -24,13 +22,15 @@ public abstract class Bala implements Movible {
 	}
 	
 	public void aumentarEnergia(int cantidad) throws CantidadDeEnergiaIncorrecta {
-		if (cantidad <= 0) {
-			throw new CantidadDeEnergiaIncorrecta();
-		} else {
-			if (1 - this.energia >= cantidad) {
-				this.energia = this.energia + cantidad;
+		if (this.activo == true) {
+			if (cantidad <= 0) {
+				throw new CantidadDeEnergiaIncorrecta();
 			} else {
-				this.energia = 1;
+				if (1 - this.energia >= cantidad) {
+					this.energia = this.energia + cantidad;
+				} else {
+					this.energia = 1;
+				}
 			}
 		}
 	}
@@ -50,7 +50,7 @@ public abstract class Bala implements Movible {
 	
 	public void mover () {
 		if (this.activo == true) {
-			if ((this.posicion.getX() > 100)||(this.posicion.getX() < 1)||(this.posicion.getY() > 100)||(this.posicion.getY() < 1)) {
+			if ((this.posicion.getX() >= 100)||(this.posicion.getX() <= 1)||(this.posicion.getY() >= 100)||(this.posicion.getY() <= 1)) {
 				this.destruir();
 			} else {
 				this.direccion.trasladar(this, this.tablero);
@@ -81,6 +81,34 @@ public abstract class Bala implements Movible {
 		this.posicion = posicion;
 	}
 	
+	public void setExpansible(boolean expansible) {
+		this.expansible = expansible;
+	}
+	
+	public void setTamanio(int tamanio) {
+		this.tamanio = tamanio;
+	}
+	
+	public void setDanio(int danio) {
+		this.danio = danio;
+	}
+	
+	public void setEquipo(int equipo) {
+		this.equipo = equipo;
+	}
+	
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+	
+	public void setActivo(boolean valor) {
+		this.activo = valor;
+	}
+	
+	public void setEnergia(int energia) {
+		this.energia = energia;
+	}
+	
 	public boolean getActivo() {
 		return this.activo;
 	}
@@ -107,5 +135,21 @@ public abstract class Bala implements Movible {
 	
 	public Mision getTablero() {
 		return this.tablero;
+	}
+	
+	public int getEnergia() {
+		return this.energia;
+	}
+	
+	public int getX() {
+		return this.posicion.getX();
+	}
+
+	public int getY() {
+		return this.posicion.getY();
+	}
+	
+	public void vivir() {
+		this.mover();
 	}
 }

@@ -7,4 +7,5 @@ package algo42.titiritero;
 public interface SuperficieDeDibujo {
 	public void limpiar();
 	public void actualizar();
+	public Object getBuffer();
 }

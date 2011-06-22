@@ -6,14 +6,9 @@ public abstract class Objeto implements Movible {
 
 	private Mision tablero;
 	private Punto posicion;
-	private boolean activo;
-	private int equipo;
+	private boolean activo, expansible;
 	private Direccion direccion;
-	private int velocidad;
-	private int tamanio;
-	private boolean expansible;
-	private int danio;
-	private int energia;
+	private int velocidad, tamanio, danio, energia, equipo;
 	
 	public Objeto () {
 		this.activo = false;
@@ -39,7 +34,7 @@ public abstract class Objeto implements Movible {
 	
 	public void mover() {
 		if (this.activo == true) {
-			if ((this.posicion.getY() + this.velocidad) >= 100) {
+			if ((this.posicion.getY()) >= 100) {
 				this.destruir();
 			} else {
 				this.direccion.trasladar(this, tablero);
@@ -50,13 +45,15 @@ public abstract class Objeto implements Movible {
 	public abstract void consumirPor (Algo42 algo42);
 	
 	public void aumentarEnergia(int cantidad) throws CantidadDeEnergiaIncorrecta {
-		if (cantidad <= 0) {
-			throw new CantidadDeEnergiaIncorrecta();
-		} else {
-			if (2 - this.energia >= cantidad) {
-				this.energia = this.energia + cantidad;
+		if (this.activo == false) {
+			if (cantidad <= 0) {
+				throw new CantidadDeEnergiaIncorrecta();
 			} else {
-				this.energia = 2;
+				if (2 - this.energia >= cantidad) {
+					this.energia = this.energia + cantidad;
+				} else {
+					this.energia = 2;
+				}
 			}
 		}
 	}
@@ -100,5 +97,56 @@ public abstract class Objeto implements Movible {
 	public void setPosicion(Punto posicion) {
 		this.posicion = posicion;
 	}
+	
+	public void setExpansible(boolean expansible) {
+		this.expansible = expansible;
+	}
+	
+	public void setTamanio(int tamanio) {
+		this.tamanio = tamanio;
+	}
+	
+	public void setDanio(int danio) {
+		this.danio = danio;
+	}
+	
+	public void setEquipo(int equipo) {
+		this.equipo = equipo;
+	}
+	
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+	
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
+	
+	public void setActivo(boolean valor) {
+		this.activo = valor;
+	}
+	
+	public void setEnergia(int energia) {
+		this.energia = energia;
+	}
 
+	public Direccion getDireccion() {
+		return this.direccion;
+	}
+	
+	public int getEnergia() {
+		return this.energia;
+	}
+	
+	public int getX() {
+		return this.posicion.getX();
+	}
+
+	public int getY() {
+		return this.posicion.getY();
+	}
+	
+	public void vivir() {
+		this.mover();
+	}
 }

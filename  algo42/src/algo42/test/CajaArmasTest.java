@@ -19,7 +19,7 @@ public class CajaArmasTest extends TestCase {
 		this.tablero.ubicarNaveDelJugador();
 		int tiempo = 1;
 		for (int i = 1; i <= tiempo; i++) {
-			jugador.volar(1);
+			jugador.volar(new Arriba());
 		}
 		assertTrue(this.caja.getActivo() == false);
 	}
