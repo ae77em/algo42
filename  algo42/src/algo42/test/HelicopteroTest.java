@@ -11,7 +11,7 @@ public class HelicopteroTest extends TestCase {
 	
 	public void setUp() {
 		this.tablero = new Mision(this.juego);
-		this.nave.activar(this.tablero, new Punto(51, 2));
+		this.nave.activar(this.tablero, new Punto(51*5, 2*5));
 	}
 	
 	public void testActuar() {
@@ -19,7 +19,7 @@ public class HelicopteroTest extends TestCase {
 		for (int i = 1; i <= tiempo; i++) {
 			this.nave.actuar();
 		}
-		assertTrue((this.nave.getPosicion().equals(new Punto(49, 3))));
+		assertTrue((this.nave.getPosicion().equals(new Punto(51*5 - 2, 2*5 + 1))));
 	}
 	
 	public void testDestruirAumentaPuntaje() {

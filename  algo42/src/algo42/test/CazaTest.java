@@ -11,7 +11,7 @@ public class CazaTest extends TestCase {
 	
 	public void setUp() {
 		this.tablero = new Mision(this.juego);
-		this.nave.activar(this.tablero, new Punto(51, 2));
+		this.nave.activar(this.tablero, new Punto(51*5, 2*5));
 	}
 	
 	public void testActuar() {
@@ -19,7 +19,7 @@ public class CazaTest extends TestCase {
 		for (int i = 1; i <= tiempo; i++) {
 			this.nave.actuar();
 		}
-		assertTrue(this.nave.getPosicion().getY() == 4);
+		assertTrue(this.nave.getPosicion().getY() == 12);
 	}
 	
 	public void testDestruirAumentaPuntaje() {

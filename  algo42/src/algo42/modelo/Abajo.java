@@ -36,8 +36,8 @@ public class Abajo extends Direccion {
 		}
 		if (objetoMovible.getActivo() == true) {
 			posicionNueva = new Punto(posicion.getX(), posicion.getY() + velocidad);
-			if (posicionNueva.getY() > 100) {
-				posicionNueva = new Punto(posicion.getX(), 100);
+			if (posicionNueva.getY() >= (100*5 + objetoMovible.getTamanio())) {
+				posicionNueva = new Punto(posicion.getX(), 100*5 + objetoMovible.getTamanio());
 			}
 			objetoMovible.setPosicion(posicionNueva);
 		}

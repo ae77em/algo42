@@ -15,7 +15,7 @@ public abstract class Nave implements Movible {
     	this.activo = false;
     	this.equipo = 2;
     	this.expansible = false;
-    	this.tamanio = 1;
+    	this.tamanio = 3;
     	this.posicion = new Punto(0, 0);
     	this.direccion = null;
     	this.estrategia = new IdaVuelta();

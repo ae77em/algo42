@@ -13,7 +13,7 @@ public abstract class Objeto implements Movible {
 	public Objeto () {
 		this.activo = false;
 		this.equipo = 0;
-		this.tamanio = 1;
+		this.tamanio = 2;
 		this.direccion = new Abajo();
 		this.velocidad = 1;
 		this.posicion = new Punto(0, 0);
@@ -34,7 +34,7 @@ public abstract class Objeto implements Movible {
 	
 	public void mover() {
 		if (this.activo == true) {
-			if ((this.posicion.getY()) >= 100) {
+			if ((this.posicion.getY()) >= 99*5) {
 				this.destruir();
 			} else {
 				this.direccion.trasladar(this, tablero);

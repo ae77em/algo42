@@ -11,7 +11,7 @@ public class GuiaTest extends TestCase {
 	
 	public void setUp() {
 		this.tablero = new Mision(this.juego);
-		this.nave.activar(this.tablero, new Punto(51, 2));
+		this.nave.activar(this.tablero, new Punto(51*5, 2*5));
 	}
 	
 	public void testActuar() {
@@ -20,7 +20,7 @@ public class GuiaTest extends TestCase {
 		for (int i = 1; i <= tiempo; i++) {
 			this.nave.actuar();
 		}
-		assertTrue((this.nave.getPosicion().equals(new Punto(posicion.getX(), 6))));
+		assertTrue((this.nave.getPosicion().equals(new Punto(posicion.getX(), posicion.getY() + 4))));
 	}
 	
 	public void testDestruirAumentaPuntaje() {

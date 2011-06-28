@@ -36,7 +36,7 @@ public class Algo42 implements Movible, KeyPressedObservador {
         this.expansible = true;
         this.danio = 1000;
         this.direccion = null;
-        this.tamanio = 1;
+        this.tamanio = 3;
         this.posicion = new Punto(0, 0);
     }
         
@@ -48,6 +48,7 @@ public class Algo42 implements Movible, KeyPressedObservador {
     }
         
     public void volar(Direccion direccion) {
+    	this.direccion = direccion;
         this.direccion.trasladar(this, this.tablero);
     }
         

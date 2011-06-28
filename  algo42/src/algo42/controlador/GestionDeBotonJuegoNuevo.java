@@ -18,14 +18,13 @@ public class GestionDeBotonJuegoNuevo implements ActionListener{
 	public GestionDeBotonJuegoNuevo(VentanaPartidaGuardada ventana, ControladorJuego unControlador){
 		this.ventanaActual = ventana;
 		this.controlador = unControlador;
-		this.programa = new ProgramaJugable(controlador);
+//		this.programa = new ProgramaJugable(controlador);
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		this.ventanaActual.cerrar();
-		VentanaJuego ventanaNueva = new VentanaJuego(500, 500, controlador);
-		controlador.setSuperficieDeDibujo(ventanaNueva.getSuperficieDeDibujo());
-//		this.programa.comenzarJuego();
+//		VentanaJuego ventanaNueva = new VentanaJuego(500, 500, controlador);
+//		controlador.setSuperficieDeDibujo(ventanaNueva.getSuperficieDeDibujo());
+		//this.programa.comenzarJuego();
 	}
 }

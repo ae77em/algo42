@@ -16,10 +16,10 @@ public class IdaVuelta extends EstrategiaArmados {
 		this.setNave(nave);
 		Punto posicionDeNave = this.getNave().getPosicion();
 		
-		if ((posicionDeNave.getY() == 1)&&(this.vueltaYaHecha == true)) {
+		if ((posicionDeNave.getY() == 2*5)&&(this.vueltaYaHecha == true)) {
 			this.getNave().huir();
 		}
-		if (posicionDeNave.getY() == 100) {
+		if (posicionDeNave.getY() == 99*5) {
 			this.girar();
 			this.mover();
 		} else {

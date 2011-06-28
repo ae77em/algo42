@@ -1,7 +1,5 @@
 package algo42.modelo;
 
-import java.util.Calendar;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,10 +11,12 @@ public class TorpedoAdaptable extends Arma {
 
 	private Arma armaQueUsa;
 	private int tiempoDesdeEleccionDeArma;
+	private Cronometro cronometro = new Cronometro();
 	
 	public TorpedoAdaptable(int cantidadDeBalas, int equipo) throws CantidadDeBalasIncorrecta {
 		super(cantidadDeBalas, equipo);
 		int numeroAlAzar = (int) (Math.random()*100+1);
+		this.cronometro.comenzar();
 		if ((numeroAlAzar >= 0)&&(numeroAlAzar < 50)) { 			// 50% de probabilidad de usar laser
 			this.armaQueUsa = new Laser(-1,2);
 		} else {
@@ -30,8 +30,7 @@ public class TorpedoAdaptable extends Arma {
 				}
 			}
 		}
-		Calendar calendario = Calendar.getInstance();
-		this.tiempoDesdeEleccionDeArma = calendario.get(Calendar.SECOND);
+		this.tiempoDesdeEleccionDeArma = cronometro.getTiempoEnSegundos();
 	}
 
 	public void cambiarArmaQueUsa(NaveArmada nave) {
@@ -44,10 +43,10 @@ public class TorpedoAdaptable extends Arma {
 	}
 	
 	public Bala getBala() {
-		Calendar calendario = Calendar.getInstance();
-		int tiempoActual = calendario.get(Calendar.SECOND);
+		int tiempoActual = cronometro.getTiempoEnSegundos();
 		if (tiempoActual - this.tiempoDesdeEleccionDeArma >= 10) { // Cada 10 segundos cambia el arma con que dispara
 			this.cambiarArmaQueUsa(this.getNave());
+			this.tiempoDesdeEleccionDeArma = tiempoActual;
 		}
 		return this.armaQueUsa.getBala();
 	}

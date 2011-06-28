@@ -12,56 +12,56 @@ public class Circulo extends Estrategia {
 		this.setNave(nave);
 		Punto posicionDeNave = this.getNave().getPosicion();
         
-		if ((posicionDeNave.getX() > 21)&&(posicionDeNave.getX() <= 51)&&(posicionDeNave.getY() >= 2)&&(posicionDeNave.getY() < 17)) {
+		if ((posicionDeNave.getX() > 21*5)&&(posicionDeNave.getX() <= 51*5)&&(posicionDeNave.getY() >= 2*5)&&(posicionDeNave.getY() < 17*5)) {
 			this.getNave().setDireccion(new Izquierda());
 			this.mover();
 			this.mover();
 			this.getNave().setDireccion(new Abajo());
 			this.mover();
 		}
-		if ((posicionDeNave.getX() > 6)&&(posicionDeNave.getX() <= 21)&&(posicionDeNave.getY() >= 17)&&(posicionDeNave.getY() < 47)) {
+		if ((posicionDeNave.getX() > 6*5)&&(posicionDeNave.getX() <= 21*5)&&(posicionDeNave.getY() >= 17*5)&&(posicionDeNave.getY() < 47*5)) {
 			this.getNave().setDireccion(new Izquierda());
 			this.mover();
 			this.getNave().setDireccion(new Abajo());
 			this.mover();
 			this.mover();
 		}
-		if ((posicionDeNave.getX() >= 6)&&(posicionDeNave.getX() < 21)&&(posicionDeNave.getY() >= 47)&&(posicionDeNave.getY() < 77)) {
+		if ((posicionDeNave.getX() >= 6*5)&&(posicionDeNave.getX() < 21*5)&&(posicionDeNave.getY() >= 47*5)&&(posicionDeNave.getY() < 77*5)) {
 			this.getNave().setDireccion(new Derecha());
 			this.mover();
 			this.getNave().setDireccion(new Abajo());
 			this.mover();
 			this.mover();
 		}
-		if ((posicionDeNave.getX() >= 21)&&(posicionDeNave.getX() < 51)&&(posicionDeNave.getY() >= 77)&&(posicionDeNave.getY() < 92)) {
+		if ((posicionDeNave.getX() >= 21*5)&&(posicionDeNave.getX() < 51*5)&&(posicionDeNave.getY() >= 77*5)&&(posicionDeNave.getY() < 92*5)) {
 			this.getNave().setDireccion(new Derecha());
 			this.mover();
 			this.mover();
 			this.getNave().setDireccion(new Abajo());
 			this.mover();
 		}
-		if ((posicionDeNave.getX() >= 51)&&(posicionDeNave.getX() < 81)&&(posicionDeNave.getY() > 77)&&(posicionDeNave.getY() <= 92)) {
+		if ((posicionDeNave.getX() >= 51*5)&&(posicionDeNave.getX() < 81*5)&&(posicionDeNave.getY() > 77*5)&&(posicionDeNave.getY() <= 92*5)) {
 			this.getNave().setDireccion(new Derecha());
 			this.mover();
 			this.mover();
 			this.getNave().setDireccion(new Arriba());
 			this.mover();
 		}
-		if ((posicionDeNave.getX() >= 81)&&(posicionDeNave.getX() < 96)&&(posicionDeNave.getY() > 47)&&(posicionDeNave.getY() <= 81)) {
+		if ((posicionDeNave.getX() >= 81*5)&&(posicionDeNave.getX() < 96*5)&&(posicionDeNave.getY() > 47*5)&&(posicionDeNave.getY() <= 81*5)) {
 			this.getNave().setDireccion(new Derecha());
 			this.mover();
 			this.getNave().setDireccion(new Arriba());
 			this.mover();
 			this.mover();
 		}
-		if ((posicionDeNave.getX() > 81)&&(posicionDeNave.getX() <= 96)&&(posicionDeNave.getY() > 17)&&(posicionDeNave.getY() <= 47)) {
+		if ((posicionDeNave.getX() > 81*5)&&(posicionDeNave.getX() <= 96*5)&&(posicionDeNave.getY() > 17*5)&&(posicionDeNave.getY() <= 47*5)) {
 			this.getNave().setDireccion(new Izquierda());
 			this.mover();
 			this.getNave().setDireccion(new Arriba());
 			this.mover();
 			this.mover();
 		}
-		if ((posicionDeNave.getX() > 51)&&(posicionDeNave.getX() <= 81)&&(posicionDeNave.getY() > 2)&&(posicionDeNave.getY() <= 17)) {
+		if ((posicionDeNave.getX() > 51*5)&&(posicionDeNave.getX() <= 81*5)&&(posicionDeNave.getY() > 2*5)&&(posicionDeNave.getY() <= 17*5)) {
 			this.getNave().setDireccion(new Izquierda());
 			this.mover();
 			this.mover();
