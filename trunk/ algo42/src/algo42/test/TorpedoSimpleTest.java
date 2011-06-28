@@ -16,12 +16,12 @@ public class TorpedoSimpleTest extends TestCase {
 	
 	public void testDispararDispara() {
 		try {
-			this.torpedoSimple = new Cohete(1,1);
+			this.torpedoSimple = new TorpedoSimple(1,1);
 		} catch (CantidadDeBalasIncorrecta e) {
 
 		}
-		this.torpedoSimple.disparar(new Punto(51, 99), this.tablero, new Arriba());
-		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51, 97));
+		this.torpedoSimple.disparar(new Punto(51*5, 95*5), this.tablero, new Arriba());
+		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51*5, 95*5 - 2));
 		assertTrue(objeto != null);
 	}
 	
@@ -31,8 +31,8 @@ public class TorpedoSimpleTest extends TestCase {
 		} catch (CantidadDeBalasIncorrecta e) {
 
 		}
-		this.torpedoSimple.disparar(new Punto(51, 99), this.tablero, new Arriba());
-		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51, 97));
+		this.torpedoSimple.disparar(new Punto(51*5, 99*5), this.tablero, new Arriba());
+		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51*5, 97*5));
 		assertTrue(objeto == null);
 	}
 	

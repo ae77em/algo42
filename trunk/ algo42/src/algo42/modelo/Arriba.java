@@ -12,8 +12,6 @@ public class Arriba extends Direccion {
 		Punto posicionBala = new Punto(posicion.getX(), posicion.getY() - 2);
 		bala.setDireccion(this);
 		bala.activar(tablero, posicionBala);
-		tablero.ubicarBalaEnPosicion(bala, posicionBala);
-		
 	}
 
 	public void trasladar(Movible objetoMovible, Mision tablero) {
@@ -37,8 +35,8 @@ public class Arriba extends Direccion {
 		}
 		if (objetoMovible.getActivo() == true) {
 			posicionNueva = new Punto(posicion.getX(), posicion.getY() - velocidad);
-			if (posicionNueva.getY() < 1) {
-				posicionNueva = new Punto(posicion.getX(), 1);
+			if (posicionNueva.getY() <= (objetoMovible.getTamanio())) {
+				posicionNueva = new Punto(posicion.getX(), objetoMovible.getTamanio());
 			}
 			objetoMovible.setPosicion(posicionNueva);
 		}

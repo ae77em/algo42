@@ -20,8 +20,8 @@ public class LaserTest extends TestCase {
 		} catch (CantidadDeBalasIncorrecta e) {
 
 		}
-		this.laser.disparar(new Punto(51, 99), this.tablero, new Arriba());
-		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51, 97));
+		this.laser.disparar(new Punto(51*5, 95*5), this.tablero, new Arriba());
+		Movible objeto = this.tablero.getObjetoEnPosicion(new Punto(51*5, 95*5 - 2));
 		assertTrue(objeto != null);
 	}	
 }

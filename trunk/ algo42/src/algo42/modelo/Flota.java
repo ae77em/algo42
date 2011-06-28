@@ -12,33 +12,33 @@ public class Flota {
 	private ArrayList<Punto> posicionesNaves = new ArrayList<Punto>();
 	private ArrayList<Movible> naves = new ArrayList<Movible>();
 	
-	public void inicializarFlota(int numeroDeMision) {
+	public Flota () {
 		Nave naveActual;
 		Guia naveGuia;
-		int numeroAlAzar = (int) (Math.random()*93+1);
+		int numeroAlAzar = (int) (Math.random()*93*5+1);
 		int otroNumeroAlAzar = (int) (Math.random()*4+1);
 		int otroOtroNumeroAlAzar;
 		while ((numeroAlAzar >= 1)&&(numeroAlAzar <= 7)) {
-			numeroAlAzar = (int) (Math.random()*93+1);
+			numeroAlAzar = (int) (Math.random()*93*5+1);
 		}
-		this.posicionesNaves.add(new Punto(numeroAlAzar, 12));
+		this.posicionesNaves.add(new Punto(numeroAlAzar, 12*5));
 		naveGuia = new Guia();
 		this.naves.add(naveGuia);
 		
 		for (int i = 1; i <= 5; i++) {
 			if (i == 1) {
-				this.posicionesNaves.add(new Punto(numeroAlAzar - 6, 2));
+				this.posicionesNaves.add(new Punto(numeroAlAzar - 6*5, 2*5));
 			} else {
 				if (i == 2) {
-					this.posicionesNaves.add(new Punto(numeroAlAzar - 3, 5));
+					this.posicionesNaves.add(new Punto(numeroAlAzar - 3*5, 5*5));
 				} else {
 					if (i == 3) {
-						this.posicionesNaves.add(new Punto(numeroAlAzar, 8));
+						this.posicionesNaves.add(new Punto(numeroAlAzar, 8*5));
 					} else {
 						if (i == 4) {
-							this.posicionesNaves.add(new Punto(numeroAlAzar + 3, 5));
+							this.posicionesNaves.add(new Punto(numeroAlAzar + 3*5, 5*5));
 						} else {
-							this.posicionesNaves.add(new Punto(numeroAlAzar + 6, 2));
+							this.posicionesNaves.add(new Punto(numeroAlAzar + 6*5, 2*5));
 						}
 					}
 				}
@@ -67,7 +67,7 @@ public class Flota {
 	}
 
 	public Punto getPosicionNave(int i) {
-		return this.posicionesNaves.remove(i);
+		return this.posicionesNaves.get(i);
 	}
 
 	public void persistir(Document doc, Element mision) {

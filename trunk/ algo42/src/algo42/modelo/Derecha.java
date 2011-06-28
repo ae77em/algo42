@@ -37,8 +37,8 @@ public class Derecha extends Direccion {
 		}
 		if (objetoMovible.getActivo() == true) {
 			posicionNueva = new Punto(posicion.getX() + velocidad, posicion.getY());
-			if (posicionNueva.getX() > 100) {
-				posicionNueva = new Punto(100, posicion.getY());
+			if (posicionNueva.getX() >= (100*5 + objetoMovible.getTamanio())) {
+				posicionNueva = new Punto(100*5 - objetoMovible.getTamanio(), posicion.getY());
 			}
 			objetoMovible.setPosicion(posicionNueva);
 		}

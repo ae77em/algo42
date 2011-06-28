@@ -19,15 +19,13 @@ public class Mision {
     private Punto puntoInicialJugador;
     
     public Mision (Juego juego) {
-    	Calendar calendario = Calendar.getInstance();
-    	
     	this.juego = juego;
-    	this.puntoInicialJugador = new Punto(51,99);
+    	this.puntoInicialJugador = new Punto(51*5,99*5);
     	this.puntajeJugador = 0;
     	this.espacioAereo = new ArrayList<Movible>();
     	this.jugador = new Algo42();
     	this.ubicarNaveDelJugador();
-    	this.tiempoDesdeLaUltimaFlotaCreada = calendario.get(Calendar.SECOND);
+    	this.tiempoDesdeLaUltimaFlotaCreada = 0;
     }
     
     public void comenzar() {
@@ -40,14 +38,14 @@ public class Mision {
     	Nave naveNoEnemiga;
     	if (numeroAlAzar == 1) {
     		naveNoEnemiga = new Civil();
-    		otroNumeroAlAzar = (int) (Math.random()*99+1);
+    		otroNumeroAlAzar = (int) (Math.random()*499+1);
     		while (otroNumeroAlAzar == 1) {
-    			otroNumeroAlAzar = (int) (Math.random()*99+1);
+    			otroNumeroAlAzar = (int) (Math.random()*499+1);
     		}
-    		naveNoEnemiga.activar(this, new Punto(2, otroNumeroAlAzar));
+    		naveNoEnemiga.activar(this, new Punto(2*5, otroNumeroAlAzar*5));
     	} else {
     		naveNoEnemiga = new Helicoptero();
-    		naveNoEnemiga.activar(this, new Punto(51, 2));
+    		naveNoEnemiga.activar(this, new Punto(51*5, 2*5));
     	}
     	this.espacioAereo.add(naveNoEnemiga);
     	naveNoEnemiga.actuar();
@@ -60,7 +58,7 @@ public class Mision {
     public Movible hayAlguien(Movible objetoAMover, Punto posicion) throws CoordenadaFueraDeRangoError {
     	Movible casillero = null;
     	
-    	if((posicion.getX() <= 1) || (posicion.getX() >= 100) || (posicion.getY() <= 1) || (posicion.getY() >= 100)) {
+    	if((posicion.getX() <= 1*5) || (posicion.getX() >= 100*5) || (posicion.getY() <= 1*5) || (posicion.getY() >= 100*5)) {
     		throw new CoordenadaFueraDeRangoError();
     	} else {                  
     		for (int i = 0; i < (this.espacioAereo.size()); i ++) {
@@ -88,6 +86,7 @@ public class Mision {
     	if (objeto == null) {
     		this.espacioAereo.add(bala);
     	} else {
+    		this.espacioAereo.add(bala);
     		resolvedorDeChoque = new ResolvedorDeChoque();
     		tipoDeChoque = resolvedorDeChoque.resolver(bala, objeto);
     		tipoDeChoque.chocarEntre(bala, objeto);
@@ -95,14 +94,13 @@ public class Mision {
     }
     
     public void ubicarNaveDelJugador() {
-    	this.jugador.setPosicion(this.puntoInicialJugador);
-    	this.espacioAereo.add(0, this.jugador);
+    	this.espacioAereo.add(this.jugador);
     	this.jugador.activar(this, this.puntoInicialJugador);
     }
     
     public void ubicarObjetoEnPosicion(Movible objeto, Punto posicion) {
     	objeto.setPosicion(posicion);
-    	this.espacioAereo.add(0, objeto);
+    	this.espacioAereo.add(objeto);
     	objeto.activar(this, posicion);
     }
     

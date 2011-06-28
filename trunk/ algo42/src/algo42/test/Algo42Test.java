@@ -20,7 +20,7 @@ public class Algo42Test extends TestCase {
 		CajaArmas caja = new CajaArmas();
 		int tiempo = 1;
 		ArrayList<Arma> armas;
-		this.tablero.ubicarObjetoEnPosicion(caja, new Punto(51, 95));
+		this.tablero.ubicarObjetoEnPosicion(caja, new Punto(51*5, 98*5));
 		for (int i = 1; i <= tiempo; i++) {
 			this.jugador.volar(new Arriba());
 		}
@@ -30,8 +30,8 @@ public class Algo42Test extends TestCase {
 	
 	public void testChocarANave() {
 		Nave nave = new Avioneta();
-		this.tablero.ubicarObjetoEnPosicion(nave, new Punto(51, 2));
-		int tiempo = 100;
+		this.tablero.ubicarObjetoEnPosicion(nave, new Punto(51*5, 2*5));
+		int tiempo = 500;
 		for (int i = 1; i <= tiempo; i++) {
 			this.jugador.volar(new Arriba());
 		}
@@ -46,10 +46,11 @@ public class Algo42Test extends TestCase {
 	
 	public void testDispararANave() {
 		Nave nave = new Avioneta();
-		this.tablero.ubicarObjetoEnPosicion(nave, new Punto(51, 2));
+		this.tablero.ubicarObjetoEnPosicion(nave, new Punto(51*5, 2*5));
 		this.jugador.disparar();
-		int tiempo = 15;
-		Bala bala = (Bala) tablero.getObjetoEnPosicion(new Punto(51, 97));
+		int tiempo = 75;
+		Punto punto = new Punto(this.jugador.getPosicion().getX(), (this.jugador.getPosicion().getY()) - 2);
+		Bala bala = (Bala) tablero.getObjetoEnPosicion(punto);
 		for (int i = 1; i <= tiempo; i++) {
 			bala.mover();
 		}
@@ -62,7 +63,7 @@ public class Algo42Test extends TestCase {
 		bala.setDireccion(new Abajo());
 		
 		//Activo la bala manualmente
-		Punto posicion = new Punto(51, 97);
+		Punto posicion = new Punto(51*5, 97*5);
 		bala.activar(this.tablero, posicion);
 		bala.mover();
 		int energia = jugador.getEnergia();
@@ -72,25 +73,25 @@ public class Algo42Test extends TestCase {
 	public void testVolarHaciaAbajoNoVuela() {
 		this.jugador.volar(new Abajo());
 		Punto posicionDelJugador = this.tablero.getPosicionDelJugador();
-		assertTrue(posicionDelJugador.equals(new Punto(51, 99)));
+		assertTrue(posicionDelJugador.equals(new Punto(51*5, 100*5 - 3)));
 	}
 	
 	public void testVolarHaciaArribaVuela() {
 		this.jugador.volar(new Arriba());
 		Punto posicionDelJugador = this.tablero.getPosicionDelJugador();
-		assertTrue(posicionDelJugador.equals(new Punto(51, 97)));
+		assertTrue(posicionDelJugador.equals(new Punto(51*5, 99*5 - 2)));
 	}
 	
 	public void testVolarHaciaDerechaVuela() {
 		this.jugador.volar(new Derecha());
 		Punto posicionDelJugador = this.tablero.getPosicionDelJugador();
-		assertTrue(posicionDelJugador.equals(new Punto(53, 99)));
+		assertTrue(posicionDelJugador.equals(new Punto(51*5 + 2, 99*5)));
 	}
 	
 	public void testVolarHaciaIzquierdaVuela() {
 		this.jugador.volar(new Izquierda());
 		Punto posicionDelJugador = this.tablero.getPosicionDelJugador();
-		assertTrue(posicionDelJugador.equals(new Punto(49, 99)));
+		assertTrue(posicionDelJugador.equals(new Punto(51*5 - 2, 99*5)));
 	}
 }
 

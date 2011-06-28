@@ -14,8 +14,8 @@ public class TorpedoSimple extends Arma {
 	}
 	
 	public Bala getBala() {
-		BalaLaser balaLaser = new BalaLaser(this.getEquipo());
-		return balaLaser;
+		BalaTorpedoSimple balaTorpedo = new BalaTorpedoSimple(this.getEquipo());
+		return balaTorpedo;
 	}
 	
 	public void persistir(Document doc, Element armas) {

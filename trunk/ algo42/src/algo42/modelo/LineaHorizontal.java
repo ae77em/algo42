@@ -12,7 +12,7 @@ public class LineaHorizontal extends Estrategia {
 		this.setNave(nave);
 		Punto posicionDeNave = this.getNave().getPosicion();
 		
-		if (posicionDeNave.getY() == 100) {
+		if (posicionDeNave.getY() == 99*5) {
 			this.getNave().huir();
 		} else {
 			this.mover();

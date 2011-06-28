@@ -19,19 +19,19 @@ public class ZigZag extends EstrategiaArmados {
 	public void mover() {
 		Punto posicionDeNave = this.getNave().getPosicion();
 		int numeroAlAzar = 0;
-		if ((posicionDeNave.getY() != 100 )&&(posicionDeNave.getY() != 1)&&(posicionDeNave.getX() != 1)&&(posicionDeNave.getX() != 100)) {
+		if ((posicionDeNave.getY() != 99*5)&&(posicionDeNave.getY() != 2*5)&&(posicionDeNave.getX() != 2*5)&&(posicionDeNave.getX() != 99*5)) {
 			numeroAlAzar = (int) (Math.random()*4+1);
 		}
-		if ((posicionDeNave.getY() == 100)||(numeroAlAzar == 1)) {
+		if ((posicionDeNave.getY() == 99*5)||(numeroAlAzar == 1)) {
 			this.getNave().setDireccion(new Arriba());
 		}
-		if ((posicionDeNave.getX() == 100)||(numeroAlAzar == 2)) {
+		if ((posicionDeNave.getX() == 99*5)||(numeroAlAzar == 2)) {
 			this.getNave().setDireccion(new Izquierda());
 		}
-		if ((posicionDeNave.getY() == 1)||(numeroAlAzar == 3)) {
+		if ((posicionDeNave.getY() == 2*5)||(numeroAlAzar == 3)) {
 			this.getNave().setDireccion(new Abajo());
 		}
-		if ((posicionDeNave.getX() == 1)||(numeroAlAzar == 4)) {
+		if ((posicionDeNave.getX() == 2*5)||(numeroAlAzar == 4)) {
 			this.getNave().setDireccion(new Derecha());
 		}
 		this.setDireccion(this.getNave().getDireccion());

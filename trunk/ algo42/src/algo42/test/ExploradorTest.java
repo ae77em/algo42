@@ -11,15 +11,17 @@ public class ExploradorTest extends TestCase {
 	
 	public void setUp() {
 		this.tablero = new Mision(this.juego);
-		this.nave.activar(this.tablero, new Punto(51, 2));
+		this.nave.activar(this.tablero, new Punto(51*5, 2*5));
 	}
 	
 	public void testActuar() {
+		int posInicialX = this.nave.getPosicion().getX();
+		int posInicialY = this.nave.getPosicion().getY();
 		int tiempo = 1;
 		for (int i = 1; i <= tiempo; i++) {
 			this.nave.actuar();
 		}
-		assertTrue((this.nave.getPosicion().equals(new Punto(45, 5))));
+		assertTrue((this.nave.getPosicion().equals(new Punto(posInicialX - 6, posInicialY + 3))));
 	}
 	
 	public void testDestruirAumentaPuntaje() {

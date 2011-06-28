@@ -36,8 +36,8 @@ public class Izquierda extends Direccion {
 		}
 		if (objetoMovible.getActivo() == true) {
 			posicionNueva = new Punto(posicion.getX() - velocidad, posicion.getY());
-			if (posicionNueva.getX() < 1) {
-				posicionNueva = new Punto(1, posicion.getY());
+			if (posicionNueva.getX() <= (objetoMovible.getTamanio())) {
+				posicionNueva = new Punto(objetoMovible.getTamanio(), posicion.getY());
 			}
 			objetoMovible.setPosicion(posicionNueva);
 		}

@@ -38,10 +38,7 @@ public class VentanaPartidaGuardada extends Frame{
 		this.setTitle("Algo42 - Partida guardada");
 		this.setResizable(false);
 		this.setVisible(true);
-	
-		Contenedor fondo = new Contenedor("fondo.jpg");
-		fondo.setBounds(0, 0, ancho, alto);
-	
+		
 		Label label1 = new Label();
 		label1.setBounds(10, this.alto - 150, 1000, 30);
 		label1.setText("Se ha encontrado una partida guardada.");
@@ -66,7 +63,6 @@ public class VentanaPartidaGuardada extends Frame{
 		this.add(label2);
 		this.add(juegoNuevo);
 		this.add(continuar);
-		this.add(fondo);
 	}
 	
 	public void cerrar(){

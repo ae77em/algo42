@@ -19,8 +19,8 @@ public class CajaArmas extends Objeto {
 		TorpedoRastreador torpedoRastreador = null;
 		
 		try {
-			cohete = new Cohete(30, 2);
-			torpedoRastreador = new TorpedoRastreador(20, 2);		
+			cohete = new Cohete(30, 1);
+			torpedoRastreador = new TorpedoRastreador(20, 1);		
 		} catch (CantidadDeBalasIncorrecta e) {
 			e.printStackTrace();
 		}
