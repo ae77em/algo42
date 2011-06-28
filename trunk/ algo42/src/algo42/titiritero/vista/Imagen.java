@@ -4,25 +4,27 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageDecoder;
 
 import algo42.titiritero.Dibujable;
 import algo42.titiritero.Posicionable;
 import algo42.titiritero.SuperficieDeDibujo;
 
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGImageDecoder;
+
+
 /*
  * Esta clase representa una imagen JPG abstrayendo al usuario de los detalles de Java2D
  * Simplemente requiere de una referencia al nombre del archivo JPG
  */
-public class Imagen implements Dibujable {
+public class Imagen implements Dibujable{
 	
 	public Imagen(){
 		
 	}
 
 	public void dibujar(SuperficieDeDibujo superficeDeDibujo) {
-		Graphics grafico = ((Ventana)superficeDeDibujo).getGrafico();
+		Graphics grafico = (Graphics)superficeDeDibujo.getBuffer();
 		grafico.drawImage(this.imagen, this.posicionable.getX(), this.posicionable.getY(), null);
 	}
 	    
@@ -30,6 +32,10 @@ public class Imagen implements Dibujable {
 		return nombreArchivoImagen;
 	}
 
+	/**
+	 * Estable la imagen con la que se dibujará el objeto.
+	 * @param nombreArchivoImagen es el nombre del archivo que contiene l a imagen. Se espera que dicho archivo sea .jpg y esté ubicado en....
+	 */
 	public void setNombreArchivoImagen(String nombreArchivoImagen) {
 		this.nombreArchivoImagen = nombreArchivoImagen;
 		InputStream in = getClass().getResourceAsStream(this.nombreArchivoImagen);

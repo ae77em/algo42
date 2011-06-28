@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import algo42.titiritero.KeyPressedObservador;
+
 /**
  * @author Nicolas
  * Esta clase es la encargada de manejar todo el gameloop. Básicamente tiene una lista
@@ -32,6 +34,11 @@ public class ControladorJuego {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean estaEnEjecucion(){
+		return this.estaEnEjecucion;
+	}
+	
 	public void detener(){
 		this.estaEnEjecucion = false;
 	}
@@ -107,14 +114,17 @@ public class ControladorJuego {
 		this.mouseClickObservadores.remove(unMouseClickObservador);
 	}
 	
-	public void despacharKeyPress(KeyEvent event){
-		for (KeyPressedObservador observador : this.keyPressedObservadores){
-			observador.keyPressed(event);
+	public void despacharKeyPress(KeyEvent e){
+		KeyPressedObservador keyPressObservador;
+		Iterator<KeyPressedObservador> iterador = this.keyPressedObservadores.iterator();
+		while(iterador.hasNext()){
+			keyPressObservador = iterador.next();
+			keyPressObservador.keyPressed(e);
 		}
-	}
+	}	
 	
-	public void agregarKeyPressObservador(KeyPressedObservador unMouseClickObservador){
-		this.keyPressedObservadores.add(unMouseClickObservador);
+	public void agregarKeyPressObservador(KeyPressedObservador unKPO){
+		this.keyPressedObservadores.add(unKPO);
 	}
 	
 	public void removerKeyPressObservador(KeyPressedObservador unMouseClickObservador){

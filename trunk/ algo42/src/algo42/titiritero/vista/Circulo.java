@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 import algo42.titiritero.SuperficieDeDibujo;
 
+
+
 public class Circulo  extends Figura {
 
 	private int radio;
@@ -13,7 +15,7 @@ public class Circulo  extends Figura {
 	}
 	
 	public void dibujar(SuperficieDeDibujo superfice) {
-		Graphics grafico = ((Ventana)superfice).getGrafico();
+		Graphics grafico = (Graphics)superfice.getBuffer();
 		grafico.setColor(getColor());
 		grafico.fillOval(getPosicionable().getX() , getPosicionable().getY(), this.radio, this.radio);
 	}

@@ -5,6 +5,8 @@ import java.awt.Graphics;
 
 import algo42.titiritero.SuperficieDeDibujo;
 
+
+
 /* 
  * Esta clase dibuja un Cuadrado (de color gris por el momento)utilizando la API Java2D 
  */
@@ -20,7 +22,7 @@ public class Cuadrado extends Figura {
 	}
 	
 	public void dibujar(SuperficieDeDibujo superfice) {
-		Graphics grafico = ((Ventana)superfice).getGrafico();
+		Graphics grafico = (Graphics)superfice.getBuffer();
 		grafico.setColor(this.getColor());
 		grafico.fillRect(this.getPosicionable().getX(), this.getPosicionable().getY(), this.ancho, this.alto);
 	}

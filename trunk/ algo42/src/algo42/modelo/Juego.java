@@ -9,10 +9,12 @@ public class Juego {
 	
 	private Mision mision;
 	private int ganaste;
+	private boolean terminado;
 	
 	public Juego() {
 		this.mision = new Mision(this);
 		this.ganaste = 0;
+		this.terminado = false;
 	}
 	
 //	public void comenzar() {
@@ -63,14 +65,20 @@ public class Juego {
 
 	public void ganaste() {
 		this.ganaste = 1;	/*GANASTE*/
+		terminado = true;
 	}
 	
 	public void perdiste() {
 		this.ganaste = -1;	/*PERDISTE*/
+		terminado = true;
 	}
 	
 	public int getGanaste() {
 		return this.ganaste;
+	}
+	
+	public boolean terminado(){
+		return terminado;
 	}
 	
 	public Mision getMision() {

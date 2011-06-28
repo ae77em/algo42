@@ -7,6 +7,8 @@ import algo42.titiritero.MouseClickObservador;
 import algo42.titiritero.Posicionable;
 import algo42.titiritero.SuperficieDeDibujo;
 
+
+
 public abstract class Figura implements Dibujable, MouseClickObservador {
 
 	private Color color;
