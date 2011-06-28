@@ -6,6 +6,9 @@ import java.awt.event.MouseEvent;
 import algo42.titiritero.ControladorJuego;
 
 
+
+
+
 public class MouseClickController extends MouseAdapter {
 
 	private ControladorJuego controlador; 

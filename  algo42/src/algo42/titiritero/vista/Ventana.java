@@ -11,6 +11,9 @@ import java.awt.event.WindowEvent;
 
 import algo42.titiritero.ControladorJuego;
 import algo42.titiritero.SuperficieDeDibujo;
+
+
+
 /*
  * ESta clase representa la superficie de dibujo, tipicamente será el formulario
  * principal de la aplicación y donde se dibujará la vista.
@@ -29,15 +32,6 @@ public class Ventana extends Frame implements SuperficieDeDibujo{
 	public Ventana(ControladorJuego unControlador){
 		this.controlador = unControlador;
 		this.addMouseListener(new MouseClickController(this.controlador));
-	}
-	//	initialize();
-	/**
-	 * This method initi			this.setTitle("Algo42");
-alizes this
-	 * 
-	 */
-	private void initialize() {
-			
 	}
 	// es llamado internamente por el metodo repaint() de la clase Frame
 	public void update(Graphics g) {
@@ -61,10 +55,10 @@ alizes this
 		superficieParaDibujar.setColor(Color.WHITE);// 
 		superficieParaDibujar.fillRect(0, 0, this.getSize().width, this.getSize().height);		
 	}
-
-	public Graphics getGrafico(){
+	
+	public Object getBuffer(){
 		return this.imagen.getGraphics();
-	}
+	}	
 	
 	public void actualizar(){
 		this.repaint();
@@ -85,9 +79,5 @@ alizes this
 			}
 		});
 	}
-		//initialize();
-	public Object getBuffer() {
-		return this.imagen.getGraphics();
-	}
 	
-}  //  @jve:decl-index=0:visual-constraint="10,10"
+}
